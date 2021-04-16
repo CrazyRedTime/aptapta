@@ -4,20 +4,40 @@ import styles from "./StartPageSlider.module.scss";
 const StartPageSlider = () => {
   return (
     <Carousel
+      renderCenterLeftControls={({ previousSlide }) => (
+        <button onClick={previousSlide} className={styles.sliderButton}>
+          <img alt="left" src="images/left.svg" />
+        </button>
+      )}
+      renderCenterRightControls={({ nextSlide }) => (
+        <button onClick={nextSlide} className={styles.sliderButton}>
+          <img alt="rigth" src="images/rigth.svg" />
+        </button>
+      )}
       width="688px"
       wrapAround={true}
       defaultControlsConfig={{
         containerClassName: styles.buttonContainer,
-        nextButtonText: ">",
-        nextButtonStyle: { background: "black", height: "100%" },
-        prevButtonText: "<",
-        prevButtonStyle: { background: "black", height: "100%" },
+        pagingDotsContainerClassName: styles.paginationContainer,
+        pagingDotsStyle: {
+          fill: 'white',
+          opacity: '1'
+        },
+        pagingDotsClassName: styles.dot
       }}
     >
-      <div>Slider1</div>
-      <div>Slider2</div>
-      <div>Slider3</div>
-      <div>Slider4</div>
+      <div>
+        <img alt="slider" src="images/slider1.png" height="100%" />
+      </div>
+      <div>
+        <img alt="slider" src="images/slider2.png" height="100%" />
+      </div>
+      <div>
+        <img alt="slider" src="images/slider3.png" height="100%" />
+      </div>
+      <div>
+        <img alt="slider" src="images/slider4.png" height="100%" />
+      </div>
     </Carousel>
   );
 };
