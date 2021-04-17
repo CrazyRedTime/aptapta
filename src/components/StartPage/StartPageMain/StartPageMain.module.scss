@@ -1,108 +1,106 @@
 .main {
-  padding: 32px 64px;
-  width: 496px;
-  height: 747px;
-  display: flex;
-  flex-direction: column;
+    padding: 32px 64px;
+    width: calc(50% - 32px);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
 }
 
 .header {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 163px;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 166px;
 }
 
 .miniName {
-  font-style: normal;
-  font-weight: bold;
-  font-size: 30px;
-  line-height: 35px;
-  color: #0EC261;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 30px;
+    line-height: 35px;
+    color: #0EC261;
 }
 
 .cities {
-  display: flex;
-  align-items: center;
+    display: flex;
+    align-items: center;
+    svg {
+        margin-right: 5px;
+    }
 }
 
 .city {
-  font-style: normal;
-  font-weight: normal;
-  font-size: 14px;
-  line-height: 16px;
-  color: #999999;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 16px;
+    color: #999999;
 }
 
 .articles {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: flex-start;
-  margin-bottom: 34px;
-}
-
-h2 {
-  font-style: normal;
-  font-weight: bold;
-  font-size: 70px;
-  line-height: 66px;
-  margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    margin-bottom: 24px;
 }
 
 .firstArticle {
-  color: #121212;
-}
-
-.secondArticle {
-  color: #0EC261;
+    color: #121212;
+    font-weight: bold;
+    font-size: 70px;
+    line-height: 70px;
+    margin: 0;
+    span {
+        color: #0EC261;
+        display: block;
+    }
 }
 
 .sloganContainer {
-  margin-bottom: 60px;
+    margin-bottom: 60px;
 }
 
 .slogan {
-  font-style: normal;
-  font-weight: 300;
-  font-size: 26px;
-  line-height: 30px;
-  color: #999999;
+    font-style: normal;
+    font-weight: 300;
+    font-size: 26px;
+    line-height: 30px;
+    color: #999999;
 }
 
 .rentButton {
-  background: linear-gradient(90deg, #0EC261 2.61%, #039F67 112.6%);
-  background-blend-mode: darken;
-  border-radius: 8px;
-  border: none;
-  font-style: normal;
-  font-weight: 500;
-  font-size: 18px;
-  line-height: 21px;
-  text-align: center;
-  color: #FFFFFF;
-  width: 250px;
-  height: 48px;
-  margin-bottom: 228px;
+    background: linear-gradient(90deg, #0EC261 2.61%, #039F67 112.6%);
+    border-radius: 8px;
+    border: none;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 21px;
+    text-align: center;
+    color: #FFFFFF;
+    width: 250px;
+    padding: 14px 5px;
 }
 
 .footer {
-  display: flex;
-  justify-content: space-between;
+    display: flex;
+    justify-content: space-between;
+    margin-top: auto;
 }
 
 .copyright {
-  font-style: normal;
-  font-weight: normal;
-  font-size: 13px;
-  line-height: 15px;
-  color: #999999;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 13px;
+    line-height: 15px;
+    color: #999999;
 }
 
 .phone {
-  font-style: normal;
-  font-weight: normal;
-  font-size: 13px;
-  line-height: 15px;
-  color: #121212;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 13px;
+    line-height: 15px;
+    color: #121212;
+    text-decoration: none;
 }
-

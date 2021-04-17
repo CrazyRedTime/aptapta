@@ -1,4 +1,5 @@
 import styles from "./StartPageMain.module.scss";
+import { ReactSVG } from "react-svg";
 
 const StartPageMain = () => {
   return (
@@ -6,13 +7,12 @@ const StartPageMain = () => {
       <div className={styles.header}>
         <span className={styles.miniName}>Need for drive</span>
         <div className={styles.cities}>
-          <img alt="map" src="images/marker.svg" />
+          <ReactSVG src="images/marker.svg"/>
           <span className={styles.city}>Ульяновск</span>
         </div>
       </div>
       <div className={styles.articles}>
-        <h2 className={styles.firstArticle}>Каршеринг</h2>
-        <h2 className={styles.secondArticle}>Need for drive</h2>
+        <h1 className={styles.firstArticle}>Каршеринг <span>Need for drive</span></h1>
       </div>
       <div className={styles.sloganContainer}>
         <span className={styles.slogan}>
@@ -24,7 +24,7 @@ const StartPageMain = () => {
       </button>
       <div className={styles.footer}>
         <span className={styles.copyright}>© 2016-2019 «Need for drive»</span>
-        <span className={styles.phone}>8 (495) 234-22-44</span>
+        <a href="tel:+74952342244" className={styles.phone}>8 (495) 234-22-44</a>
       </div>
     </div>
   );

@@ -6,7 +6,7 @@ import { useState } from 'react';
 import OpenedMenu from './OpenedMenu/OpenedMenu';
 
 const StartPage = () => {
-  const [menuIsOpen, setMenuIsOpen] = useState(true);
+  const [menuIsOpen, setMenuIsOpen] = useState(false);
 
   return (
     <div className={styles.main}>

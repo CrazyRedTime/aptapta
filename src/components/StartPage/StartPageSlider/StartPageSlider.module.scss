@@ -1,62 +1,69 @@
 .buttonContainer {
-  height: 100%;
+    height: 100%;
 }
 
 .paginationContainer {
-  align-items: flex-end;
-  height: 100%;
+    align-items: flex-end;
+    height: 100%;
 }
 
 .sliderButton {
-  background-color: transparent;
-  height: 100%;
-  border: none;
-  cursor: pointer;
-  padding: 0 28px;
+    background-color: transparent;
+    height: 100%;
+    border: none;
+    cursor: pointer;
+    padding: 0 28px;
 }
 
-.sliderButton:hover {
-  background: rgba(14, 194, 97, 0.2);
+.sliderButton {
+    transition: 0.3s linear;
+    &:hover {
+        background: rgba(14, 194, 97, 0.2);
+    }
 }
 
 .sliderItem {
-  padding: 237px 97px 20px 96px;
-  height: 811px;
+    padding: 236px 40px 20px 96px;
 }
 
 .sliderContent {
-  position: relative;
-  h3 {
-    color: #fff;
-    font-size: 40px;
-    margin-bottom: 8px;
-  }
-  p {
-    color: #EEE;
-    font-size: 24px;
-  }
-  button {
-  font-style: normal;
-  font-weight: 500;
-  font-size: 18px;
-  line-height: 21px;
-  border: none;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  color: #EEEEEE;
-  background: linear-gradient(90deg, #13493F 0%, #0C7B1B 100%);
-  border-radius: 4px;
-  width: 164px;
-  height: 48px;
-  }
+    position: relative;
+    h3 {
+        color: #fff;
+        font-size: 40px;
+        margin: 0 0 8px 0;
+    }
+    p {
+        color: #EEE;
+        font-size: 24px;
+        margin: 0 0 25px 0;
+        max-width: 485px;
+        font-weight: 300;
+        line-height: 24px;
+    }
+    button {
+        font-style: normal;
+        font-weight: 500;
+        font-size: 18px;
+        line-height: 21px;
+        border: none;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        color: #EEEEEE;
+        background: linear-gradient(90deg, #13493F 0%, #0C7B1B 100%);
+        border-radius: 4px;
+        width: 164px;
+        height: 48px;
+    }
 }
 
 .sliderImg {
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }

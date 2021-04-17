@@ -5,31 +5,45 @@ const OpenedMenu = () => {
   return (
     <div className={styles.openedMenu}>
       <div className={styles.menuContainer}>
-        <ul className={styles.menu}>
-          <li>ПАРКОВКА</li>
-          <li>СТРАХОВКА</li>
-          <li>БЕНЗИН</li>
-          <li>ОБСЛУЖИВАНИЕ</li>
-        </ul>
-        <div className={styles.social}>
-          <ReactSVG
-            beforeInjection={(svg) => {
-              svg.classList.add(styles.icon);
-            }}
-            src="images/telegram.svg"
-          />
-          <ReactSVG
-            beforeInjection={(svg) => {
-              svg.classList.add(styles.icon);
-            }}
-            src="images/facebook.svg"
-          />
-          <ReactSVG
-            beforeInjection={(svg) => {
-              svg.classList.add(styles.icon);
-            }}
-            src="images/instagram.svg"
-          />
+        <div className={styles.centerContent}>
+          <ul className={styles.menu}>
+            <li><a>ПАРКОВКА</a></li>
+            <li><a>СТРАХОВКА</a></li>
+            <li><a>БЕНЗИН</a></li>
+            <li><a>ОБСЛУЖИВАНИЕ</a></li>
+          </ul>
+          <ul className={styles.social}>
+            <li>
+              <a href="">
+              <ReactSVG
+                beforeInjection={(svg) => {
+                  svg.classList.add(styles.icon);
+                }}
+                src="images/telegram.svg"
+              />
+            </a>
+            </li>
+            <li>
+            <a href="">
+              <ReactSVG
+                  beforeInjection={(svg) => {
+                    svg.classList.add(styles.icon);
+                  }}
+                  src="images/facebook.svg"
+                />
+              </a>
+            </li>
+            <li>
+              <a href="">
+                <ReactSVG
+                  beforeInjection={(svg) => {
+                    svg.classList.add(styles.icon);
+                  }}
+                  src="images/instagram.svg"
+                />
+              </a>
+            </li>
+          </ul>
         </div>
       </div>
     </div>
