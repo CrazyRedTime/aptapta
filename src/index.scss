@@ -5,6 +5,8 @@ body {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     font-family: 'Roboto', sans-serif;
+    min-width: 320px;
+    overflow: auto;
 }
 
 * {
@@ -66,4 +68,16 @@ code {
             fill: #0EC261 !important;
         }
     }
+}
+
+@media (max-width: 1024px) {
+  .slider  {
+    width: calc(40% - 32px) !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .slider {
+    display: none !important;
+  }
 }

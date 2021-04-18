@@ -5,7 +5,8 @@
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
-    padding: 30px 0 32px 0;
+    padding: 30px 20px 32px 20px;
+    position: relative;
 }
 
 .menuButton {
@@ -23,4 +24,39 @@
     line-height: 15px;
     color: #0EC261;
     text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+@media (max-width: 768px) {
+  .menu {
+    width: 86px;
+    padding: 37px 27px;
+  }
+}
+
+@media (max-width: 500px) {
+  .menu {
+    width: 51px;
+    padding: 21px 24px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: #fff;
+  }
+  .menuButton {
+    div {
+      svg {
+        path {
+          stroke: #000;
+        }
+      }
+    }
+  }
+  .langButton {
+    display: none;
+  }
+  .closeButton {
+    path {
+    stroke: #fff !important;
+    }
+  }
 }

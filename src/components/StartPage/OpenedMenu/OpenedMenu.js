@@ -7,14 +7,14 @@ const OpenedMenu = () => {
       <div className={styles.menuContainer}>
         <div className={styles.centerContent}>
           <ul className={styles.menu}>
-            <li><a>ПАРКОВКА</a></li>
-            <li><a>СТРАХОВКА</a></li>
-            <li><a>БЕНЗИН</a></li>
-            <li><a>ОБСЛУЖИВАНИЕ</a></li>
+            <li><a href="/#">ПАРКОВКА</a></li>
+            <li><a href="/#">СТРАХОВКА</a></li>
+            <li><a href="/#">БЕНЗИН</a></li>
+            <li><a href="/#">ОБСЛУЖИВАНИЕ</a></li>
           </ul>
           <ul className={styles.social}>
             <li>
-              <a href="">
+              <a href="/#">
               <ReactSVG
                 beforeInjection={(svg) => {
                   svg.classList.add(styles.icon);
@@ -24,7 +24,7 @@ const OpenedMenu = () => {
             </a>
             </li>
             <li>
-            <a href="">
+            <a href="/#">
               <ReactSVG
                   beforeInjection={(svg) => {
                     svg.classList.add(styles.icon);
@@ -34,7 +34,7 @@ const OpenedMenu = () => {
               </a>
             </li>
             <li>
-              <a href="">
+              <a href="/#">
                 <ReactSVG
                   beforeInjection={(svg) => {
                     svg.classList.add(styles.icon);

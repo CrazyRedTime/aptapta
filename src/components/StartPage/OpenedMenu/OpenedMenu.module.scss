@@ -38,6 +38,7 @@
             line-height: 37px;
             color: #FFFFFF;
             transition: 0.3s linear;
+            text-decoration: none;
             &:hover {
                 color: #0EC261;
             }
@@ -64,4 +65,35 @@
     &:hover {
         fill: #0EC261
     }
+}
+
+@media (max-width: 1024px) {
+  .menuContainer {
+    width: calc(60% + 32px);
+  }
+}
+
+@media (max-width: 768px) {
+  .menuContainer {
+    width: 100%;
+    padding-left: 97px;
+    li {
+      a {
+        font-size: 28px;
+        line-height: 33px;
+      }
+    }
+  }
+}
+
+@media (max-width: 500px) {
+  .menuContainer {
+    padding-left: 28px;
+    li {
+      a {
+        font-size: 22px;
+        line-height: 26px;
+      }
+    }
+  }
 }
