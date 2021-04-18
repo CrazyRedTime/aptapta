@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/aptapta/static/css/main.e8f29f3b.chunk.css",
+    "main.js": "/aptapta/static/js/main.86af7ada.chunk.js",
+    "main.js.map": "/aptapta/static/js/main.86af7ada.chunk.js.map",
+    "runtime-main.js": "/aptapta/static/js/runtime-main.cc4535a6.js",
+    "runtime-main.js.map": "/aptapta/static/js/runtime-main.cc4535a6.js.map",
+    "static/js/2.1de094d9.chunk.js": "/aptapta/static/js/2.1de094d9.chunk.js",
+    "static/js/2.1de094d9.chunk.js.map": "/aptapta/static/js/2.1de094d9.chunk.js.map",
+    "static/js/3.e3612995.chunk.js": "/aptapta/static/js/3.e3612995.chunk.js",
+    "static/js/3.e3612995.chunk.js.map": "/aptapta/static/js/3.e3612995.chunk.js.map",
+    "index.html": "/aptapta/index.html",
+    "static/css/main.e8f29f3b.chunk.css.map": "/aptapta/static/css/main.e8f29f3b.chunk.css.map",
+    "static/js/2.1de094d9.chunk.js.LICENSE.txt": "/aptapta/static/js/2.1de094d9.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.cc4535a6.js",
+    "static/js/2.1de094d9.chunk.js",
+    "static/css/main.e8f29f3b.chunk.css",
+    "static/js/main.86af7ada.chunk.js"
+  ]
+}
