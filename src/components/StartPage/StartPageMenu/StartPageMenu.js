@@ -1,7 +1,12 @@
 import styles from "./StartPageMenu.module.scss";
 import { ReactSVG } from "react-svg";
+import cn from "classnames";
 
 const StartPageMenu = ({ menuIsOpen, setMenuIsOpen }) => {
+  const langButtonClasses = cn ([styles.langButton], {
+    [styles.showMobile]: menuIsOpen,
+  })
+
   return (
     <div className={styles.menu}>
       <button
@@ -19,7 +24,7 @@ const StartPageMenu = ({ menuIsOpen, setMenuIsOpen }) => {
           <ReactSVG src="images/menu_btn.svg" />
         )}
       </button>
-      <button className={styles.langButton}>Eng</button>
+      <button className={langButtonClasses}>Eng</button>
     </div>
   );
 };

@@ -13,24 +13,21 @@ const StartPageSlider = () => {
     {
       imgLink: "images/slider2.png",
       article: "Страховка",
-      text:
-        "Полная страховка автомобиля",
+      text: "Полная страховка автомобиля",
       buttonColors: "green",
     },
     {
       imgLink: "images/slider3.png",
       article: "Бензин",
-      text:
-        "Полный бак на любой заправке города за наш счёт",
+      text: "Полный бак на любой заправке города за наш счёт",
       buttonColors: "green",
     },
     {
       imgLink: "images/slider4.png",
       article: "Обслуживание",
-      text:
-        "Автомобиль проходит еженедельное ТО",
+      text: "Автомобиль проходит еженедельное ТО",
       buttonColors: "green",
-    }
+    },
   ];
 
   return (
@@ -82,16 +79,17 @@ const StartPageSlider = () => {
       {sliders.map((slider, index) => {
         return (
           <div className={styles.sliderItem} key={index}>
-            <img
-              className={styles.sliderImg}
-              alt="slider"
-              src={slider.imgLink}
-            />
+            <div className={styles.wrapImg}>
+              <img
+                className={styles.sliderImg}
+                alt="slider"
+                src={slider.imgLink}
+              />
+            </div>
+
             <div className={styles.sliderContent}>
               <h3>{slider.article}</h3>
-              <p>
-                {slider.text}
-              </p>
+              <p>{slider.text}</p>
               <button
                 onClick={() => {
                   console.log("click");

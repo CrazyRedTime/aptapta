@@ -26,21 +26,22 @@
     text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
 
-@media (max-width: 768px) {
+@media (max-width: 900px) {
   .menu {
     width: 86px;
     padding: 37px 27px;
   }
 }
 
-@media (max-width: 500px) {
+@media (max-width: 540px) {
   .menu {
     width: 51px;
     padding: 21px 24px;
     position: absolute;
     top: 0;
     left: 0;
-    background-color: #fff;
+    background-color: transparent;
+    height: 100%;
   }
   .menuButton {
     div {
@@ -53,6 +54,11 @@
   }
   .langButton {
     display: none;
+    &.showMobile {
+      display: block;
+      position: relative;
+      z-index: 100;
+    }
   }
   .closeButton {
     path {
