@@ -18,10 +18,10 @@ const StartPageMenu = ({ menuIsOpen, setMenuIsOpen }) => {
             beforeInjection={(svg) => {
               svg.classList.add(styles.closeButton);
             }}
-            src="images/x.svg"
+            src={process.env.PUBLIC_URL + '/images/x.svg'}
           />
         ) : (
-          <ReactSVG src="images/menu_btn.svg" />
+          <ReactSVG src={process.env.PUBLIC_URL + '/images/menu_btn.svg'} />
         )}
       </button>
       <button className={langButtonClasses}>Eng</button>

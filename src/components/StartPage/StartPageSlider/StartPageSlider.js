@@ -4,26 +4,26 @@ import styles from "./StartPageSlider.module.scss";
 const StartPageSlider = () => {
   const sliders = [
     {
-      imgLink: "images/slider1.png",
+      imgLink: "/images/slider1.png",
       article: "Бесплатная парковка",
       text:
         "Оставляйте машину на платных городских парковках и разрешенных местах, не нарушая ПДД, а также в аэропортах.",
       buttonColors: "green",
     },
     {
-      imgLink: "images/slider2.png",
+      imgLink: "/images/slider2.png",
       article: "Страховка",
       text: "Полная страховка автомобиля",
       buttonColors: "green",
     },
     {
-      imgLink: "images/slider3.png",
+      imgLink: "/images/slider3.png",
       article: "Бензин",
       text: "Полный бак на любой заправке города за наш счёт",
       buttonColors: "green",
     },
     {
-      imgLink: "images/slider4.png",
+      imgLink: "/images/slider4.png",
       article: "Обслуживание",
       text: "Автомобиль проходит еженедельное ТО",
       buttonColors: "green",
@@ -56,12 +56,12 @@ const StartPageSlider = () => {
       )}
       renderCenterLeftControls={({ previousSlide }) => (
         <button onClick={previousSlide} className={styles.sliderButton}>
-          <img alt="left" src="images/left.svg" />
+          <img alt="left" src={process.env.PUBLIC_URL + '/images/left.svg'} />
         </button>
       )}
       renderCenterRightControls={({ nextSlide }) => (
         <button onClick={nextSlide} className={styles.sliderButton}>
-          <img alt="rigth" src="images/rigth.svg" />
+          <img alt="right" src={process.env.PUBLIC_URL + '/images/right.svg'} />
         </button>
       )}
       width="688px"
@@ -83,7 +83,7 @@ const StartPageSlider = () => {
               <img
                 className={styles.sliderImg}
                 alt="slider"
-                src={slider.imgLink}
+                src={process.env.PUBLIC_URL + slider.imgLink}
               />
             </div>
 

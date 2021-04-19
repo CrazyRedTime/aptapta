@@ -19,7 +19,7 @@ const OpenedMenu = () => {
                 beforeInjection={(svg) => {
                   svg.classList.add(styles.icon);
                 }}
-                src="images/telegram.svg"
+                src={process.env.PUBLIC_URL + '/images/telegram.svg'}
               />
             </a>
             </li>
@@ -29,7 +29,7 @@ const OpenedMenu = () => {
                   beforeInjection={(svg) => {
                     svg.classList.add(styles.icon);
                   }}
-                  src="images/facebook.svg"
+                  src={process.env.PUBLIC_URL + '/images/facebook.svg'}
                 />
               </a>
             </li>
@@ -39,7 +39,7 @@ const OpenedMenu = () => {
                   beforeInjection={(svg) => {
                     svg.classList.add(styles.icon);
                   }}
-                  src="images/instagram.svg"
+                  src={process.env.PUBLIC_URL + '/images/instagram.svg'}
                 />
               </a>
             </li>
