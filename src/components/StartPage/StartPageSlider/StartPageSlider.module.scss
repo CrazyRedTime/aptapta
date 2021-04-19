@@ -49,7 +49,6 @@
         justify-content: center;
         text-align: center;
         color: #EEEEEE;
-        background: linear-gradient(90deg, #13493F 0%, #0C7B1B 100%);
         border-radius: 4px;
         width: 164px;
         height: 48px;
@@ -93,4 +92,20 @@
       font-size: 22px;
     }
   }
+}
+
+.green {
+  background: linear-gradient(90deg, #13493F 0%, #0C7B1B 100%);
+}
+
+.blue {
+  background: linear-gradient(90deg, #132949 0%, #0C7B67 100%)
+}
+
+.red {
+  background: linear-gradient(90deg, #493013 0%, #7B0C3B 100%);
+}
+
+.purple {
+  background: linear-gradient(90deg, #281349 0%, #720C7B 100%);
 }

@@ -2,31 +2,32 @@ import Carousel from "nuka-carousel";
 import styles from "./StartPageSlider.module.scss";
 
 const StartPageSlider = () => {
+
   const sliders = [
     {
       imgLink: "/images/slider1.png",
       article: "Бесплатная парковка",
       text:
         "Оставляйте машину на платных городских парковках и разрешенных местах, не нарушая ПДД, а также в аэропортах.",
-      buttonColors: "green",
+      buttonColor: "green",
     },
     {
       imgLink: "/images/slider2.png",
       article: "Страховка",
       text: "Полная страховка автомобиля",
-      buttonColors: "green",
+      buttonColor: "blue",
     },
     {
       imgLink: "/images/slider3.png",
       article: "Бензин",
       text: "Полный бак на любой заправке города за наш счёт",
-      buttonColors: "green",
+      buttonColor: "red",
     },
     {
       imgLink: "/images/slider4.png",
       article: "Обслуживание",
       text: "Автомобиль проходит еженедельное ТО",
-      buttonColors: "green",
+      buttonColor: "purple",
     },
   ];
 
@@ -91,6 +92,7 @@ const StartPageSlider = () => {
               <h3>{slider.article}</h3>
               <p>{slider.text}</p>
               <button
+                className={styles[slider.buttonColor]}
                 onClick={() => {
                   console.log("click");
                 }}
