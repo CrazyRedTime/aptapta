@@ -13,6 +13,12 @@
 
 .mapContainer {
   padding: 32px 64px;
+  width: calc(71% - 32px);
+  border-right: 1px solid #EEEEEE;
+}
+
+.orderWrap {
+  display: flex;
 }
 
 .mapForm {
@@ -21,4 +27,76 @@
 
 .none {
   display: none !important;
+}
+
+.orderDetails {
+  padding: 32px 64px 32px 32px;
+  width: calc(29% - 32px);
+}
+
+.yourOrder {
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 21px;
+  text-align: right;
+  color: #121212; 
+}
+
+.yourOrderContainer {
+  margin-bottom: 26px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.orderPoint {
+  display: flex;
+  align-items: flex-end;
+  margin-bottom: 32px;
+}
+
+.pointTitle {
+  margin-right: 12px;
+  font-weight: 300;
+  font-size: 14px;
+  line-height: 16px;
+  color: #121212;
+}
+
+.dots {
+  font-weight: 300;
+  font-size: 14px;
+  line-height: 16px;
+  color: #999999;
+  margin-right: 12px;
+}
+
+.point {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: flex-end;
+  span {
+    font-weight: 300;
+    font-size: 14px;
+    line-height: 16px;
+    color: #999999;
+  }
+}
+
+.chooseModelButton {
+  background: linear-gradient(90deg, #0EC261 2.61%, #039F67 112.6%);
+  background-blend-mode: darken;
+  border-radius: 8px;
+  border: none;
+  width: 287px;
+  padding: 15px 5px;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 21px;
+  text-align: center;
+  color: #FFFFFF;
+  &:disabled {
+    background: #EEEEEE;
+    cursor: default;
+  }
 }

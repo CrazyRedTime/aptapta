@@ -1,7 +1,15 @@
 import styles from "./StartPageMain.module.scss";
+import { useHistory } from "react-router-dom";
 import { ReactSVG } from "react-svg";
 
 const StartPageMain = () => {
+
+  const history = useHistory();
+
+  const goToOrder = () => {
+    history.push('/order');
+  }
+
   return (
     <div className={styles.main}>
       <div className={styles.header}>
@@ -19,7 +27,7 @@ const StartPageMain = () => {
         Поминутная аренда авто твоего города
         </span>
       </div>
-      <button className={styles.rentButton}>
+      <button className={styles.rentButton} onClick={() => goToOrder()}>
         Забронировать
       </button>
       <div className={styles.footer}>

@@ -15,6 +15,11 @@ const getPointsFromApi = async () => {
   return response.data.data.filter((marker) => marker.cityId);
 }
 
+const getRateFromApi = async () => {
+  const response = await template.get(`/db/car`);
+  console.log(response.data.data);
+}
+
 const getMarkerForMap = async (point) => {
   const locationCoors = await Geocode.fromAddress(`${point.cityId.name} ${point.address}`);
   const { lat, lng } = locationCoors.results[0].geometry.location;
@@ -31,6 +36,7 @@ const getMarkerForMap = async (point) => {
 const api = {
   getPointsFromApi,
   getMarkerForMap,
+  getRateFromApi
 }
 
 export default api;
