@@ -6,6 +6,7 @@ import { useState } from 'react';
 import OpenedMenu from './OpenedMenu/OpenedMenu';
 
 const StartPage = () => {
+
   const [menuIsOpen, setMenuIsOpen] = useState(false);
 
   return (

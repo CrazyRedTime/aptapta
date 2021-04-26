@@ -66,6 +66,7 @@ const StartPageSlider = () => {
         </button>
       )}
       width="688px"
+      speed={100}
       wrapAround={true}
       defaultControlsConfig={{
         containerClassName: styles.buttonContainer,
