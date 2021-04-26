@@ -119,7 +119,12 @@ const OrderPage = ({ fetchPoints, citiesFromState, markers }) => {
                 value={currentAddress}
               />
             </div>
-            <OrderPageMap center={center} zoom={zoom} />
+            <OrderPageMap
+              center={center}
+              zoom={zoom}
+              setCurrentCity={setCurrentCity}
+              setCurrentAddress={setCurrentAddress}
+            />
           </div>
           <div className={styles.orderDetails}>
             <div className={styles.yourOrderContainer}>
@@ -135,7 +140,10 @@ const OrderPage = ({ fetchPoints, citiesFromState, markers }) => {
                 </div>
               </div>
             ) : null}
-            <button className={styles.chooseModelButton} disabled={!currentAddress}>
+            <button
+              className={styles.chooseModelButton}
+              disabled={!currentAddress}
+            >
               Выбрать модель
             </button>
           </div>

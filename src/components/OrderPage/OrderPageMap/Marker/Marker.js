@@ -1,16 +1,24 @@
 import styles from "./Marker.module.scss";
-import cn from 'classnames';
+import cn from "classnames";
 
-const Marker = ({ color, name }) => {
+const Marker = ({ color, name, setCurrentCity, setCurrentAddress, marker }) => {
+
+  const hadleMarker = () => {
+    setCurrentCity(marker.city);
+    setCurrentAddress(marker);
+    console.log('click')
+  }
+
   return (
     <div>
-        <div
-          className={cn(styles.pin, styles.bounce)}
-          style={{ backgroundColor: color, cursor: 'pointer' }}
-          title={name}
-        />
-        <div className={styles.pulse} />
-      </div>
+      <div
+        onClick={hadleMarker}
+        className={cn(styles.pin, styles.bounce)}
+        style={{ backgroundColor: color, cursor: "pointer" }}
+        title={name}
+      />
+      <div className={styles.pulse} />
+    </div>
   );
 };
 

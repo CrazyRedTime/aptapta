@@ -7,13 +7,17 @@ import { getMarkersWithMemo, getPointsAddress } from "../../../redux/selectors";
 import Marker from "./Marker/Marker";
 // import styles from "./OrderPageMap.module.scss";
 
-const OrderPageMap = ({ center, points, fetchMarkers, markers, zoom }) => {
+const OrderPageMap = ({ center, points, fetchMarkers, markers, zoom, setCurrentCity, setCurrentAddress }) => {
 
   useEffect(() => {
     if (points.length) {
       fetchMarkers(points);
     }
   }, [fetchMarkers, points]);
+
+  useEffect(() => {
+    console.log(markers);
+  }, [markers])
 
   return (
     <div style={{ height: "400px", width: "800px" }}>
@@ -31,6 +35,9 @@ const OrderPageMap = ({ center, points, fetchMarkers, markers, zoom }) => {
               lng={marker.lng}
               name={marker.address}
               color={"blue"}
+              setCurrentCity={setCurrentCity}
+              setCurrentAddress={setCurrentAddress}
+              marker={marker}
             />
           );
         })}
