@@ -15,10 +15,6 @@ const OrderPageMap = ({ center, points, fetchMarkers, markers, zoom, setCurrentC
     }
   }, [fetchMarkers, points]);
 
-  useEffect(() => {
-    console.log(markers);
-  }, [markers])
-
   return (
     <div style={{ height: "400px", width: "800px" }}>
       <GoogleMapReact

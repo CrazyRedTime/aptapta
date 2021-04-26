@@ -6,7 +6,6 @@ const Marker = ({ color, name, setCurrentCity, setCurrentAddress, marker }) => {
   const hadleMarker = () => {
     setCurrentCity(marker.city);
     setCurrentAddress(marker);
-    console.log('click')
   }
 
   return (

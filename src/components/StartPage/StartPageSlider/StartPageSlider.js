@@ -94,9 +94,6 @@ const StartPageSlider = () => {
               <p>{slider.text}</p>
               <button
                 className={styles[slider.buttonColor]}
-                onClick={() => {
-                  console.log("click");
-                }}
               >
                 Подробнее
               </button>
