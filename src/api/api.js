@@ -27,17 +27,10 @@ const getMarkerForMap = async (point) => {
   }, address: point.address, id: point.id };
 }
 
-const getCityForMap = async (city) => {
-  console.log(city);
-  // const response = await Geocode.fromAddress(city);
-  // const { lat, lng } = response.results[0].geometry.location;
-  // return { lat, lng, city };
-}
 
 const api = {
   getPointsFromApi,
   getMarkerForMap,
-  getCityForMap,
 }
 
 export default api;

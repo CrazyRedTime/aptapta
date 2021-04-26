@@ -6,7 +6,7 @@ import OrderPageHeader from "./OrderPageHeader/OrderPageHeader";
 import OrderPageNav from "./OrderPageNav/OrderPageNav";
 import OrderPageMap from "./OrderPageMap/OrderPageMap";
 import { connect } from "react-redux";
-import { fetchPoints, fetchCities } from "../../redux/map";
+import { fetchPoints } from "../../redux/map";
 import Geocode from "react-geocode";
 import { getCitiesWithMemo, getMarkersWithMemo } from "../../redux/selectors";
 import TextField from "@material-ui/core/TextField";
@@ -15,8 +15,6 @@ import { createFilterOptions } from "@material-ui/lab/Autocomplete";
 
 const OrderPage = ({
   fetchPoints,
-  citiesFromPoints,
-  fetchCities,
   citiesFromState,
   markers
 }) => {
@@ -130,6 +128,6 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps, { fetchPoints, fetchCities })(
+export default connect(mapStateToProps, { fetchPoints })(
   OrderPage
 );
