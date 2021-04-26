@@ -12,10 +12,11 @@ import { getCitiesWithMemo, getMarkersWithMemo } from "../../redux/selectors";
 import TextField from "@material-ui/core/TextField";
 import Autocomplete from "@material-ui/lab/Autocomplete";
 import { createFilterOptions } from "@material-ui/lab/Autocomplete";
+import apiKey from "../../api/apiKey";
 
 const OrderPage = ({ fetchPoints, citiesFromState, markers }) => {
   useEffect(() => {
-    Geocode.setApiKey();
+    Geocode.setApiKey(apiKey);
     Geocode.setLanguage("en");
     Geocode.setRegion("ru");
   }, []);

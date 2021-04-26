@@ -1,6 +1,7 @@
 import GoogleMapReact from "google-map-react";
 import { useEffect } from "react";
 import { connect } from "react-redux";
+import apiKey from "../../../api/apiKey";
 import { fetchMarkers } from "../../../redux/map";
 import { getMarkersWithMemo, getPointsAddress } from "../../../redux/selectors";
 import Marker from "./Marker/Marker";
@@ -17,7 +18,7 @@ const OrderPageMap = ({ center, points, fetchMarkers, markers, zoom }) => {
   return (
     <div style={{ height: "400px", width: "800px" }}>
       <GoogleMapReact
-        bootstrapURLKeys={{}}
+        bootstrapURLKeys={{ key: apiKey }}
         center={center}
         zoom={zoom}
         options={{scrollwheel: true}}
