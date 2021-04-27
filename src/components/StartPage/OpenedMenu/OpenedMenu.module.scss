@@ -68,32 +68,33 @@
 }
 
 @media (max-width: 1024px) {
-  .menuContainer {
-    width: calc(60% + 32px);
-  }
+    .menuContainer {
+        width: calc(60% + 32px);
+    }
 }
 
 @media (max-width: 900px) {
-  .menuContainer {
-    width: 100%;
-    padding-left: 97px;
-    li {
-      a {
-        font-size: 28px;
-        line-height: 33px;
-      }
+    .menuContainer {
+        width: 100%;
+        padding-left: 97px;
+        li {
+            a {
+                font-size: 28px;
+                line-height: 33px;
+            }
+        }
     }
-  }
 }
 
 @media (max-width: 540px) {
-  .menuContainer {
-    padding-left: 28px;
-    li {
-      a {
-        font-size: 22px;
-        line-height: 26px;
-      }
+    .menuContainer {
+        justify-content: flex-start;
+        padding: 80px 0 0 28px;
+        li {
+            a {
+                font-size: 22px;
+                line-height: 26px;
+            }
+        }
     }
-  }
 }

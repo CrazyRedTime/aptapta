@@ -71,18 +71,51 @@ code {
 }
 
 @media (max-width: 1024px) {
-  .slider  {
-    width: calc(40% - 32px) !important;
-  }
+    .slider {
+        width: calc(40% - 32px) !important;
+    }
 }
 
 @media (max-width: 900px) {
-  .slider {
-    display: none !important;
-  }
+    .slider {
+        display: none !important;
+    }
 }
 
 .leaflet-container {
-  height: 352px;
-  width: 736px;
+    height: 352px;
+    width: 736px;
+}
+
+.MuiFormControl-fullWidth {
+    flex-direction: row!important;
+}
+
+.MuiFormLabel-root {
+    position: static!important;
+    transition: none!important;
+    white-space: nowrap!important;
+    font-weight: 300!important;
+    font-size: 14px!important;
+    line-height: 16px!important;
+    color: #121212!important;
+    animation: none!important;
+    transform: none!important;
+    display: flex!important;
+    align-items: flex-end;
+    width: 94px;
+    flex: 0 0 auto;
+    justify-content: flex-end;
+    margin-right: 8px;
+    line-height: 19px!important;
+}
+
+.MuiAutocomplete-hasPopupIcon.MuiAutocomplete-hasClearIcon .MuiAutocomplete-inputRoot {
+    width: 224px;
+    flex: 0 0 auto;
+}
+
+.MuiAutocomplete-inputRoot[class*="MuiInput-root"] .MuiAutocomplete-input {
+    font-size: 14px;
+    padding: 0!important;
 }

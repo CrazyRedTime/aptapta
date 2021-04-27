@@ -70,7 +70,7 @@ const OrderPage = ({ fetchPoints, citiesFromState, markers }) => {
                 getOptionSelected={(option, value) => option.id === value.id}
                 filterOptions={filterOptionsForCity}
                 renderInput={(params) => (
-                  <TextField {...params} label="Город" variant="outlined" />
+                  <TextField {...params} label="Город" />
                 )}
                 onChange={(event, value, reason) => {
                   if (reason === "select-option") {
@@ -101,7 +101,6 @@ const OrderPage = ({ fetchPoints, citiesFromState, markers }) => {
                   <TextField
                     {...params}
                     label="Пункт выдачи"
-                    variant="outlined"
                   />
                 )}
                 onChange={(event, value, reason) => {
@@ -137,7 +136,7 @@ const OrderPage = ({ fetchPoints, citiesFromState, markers }) => {
             {currentAddress ? (
               <div className={styles.orderPoint}>
                 <span className={styles.pointTitle}>Пункт выдачи</span>
-                <span className={styles.dots}>......................</span>
+                <span className={styles.dots}></span>
                 <div className={styles.point}>
                   <span>{`${currentAddress.city.name},`}</span>
                   <span>{`${currentAddress.address}`}</span>

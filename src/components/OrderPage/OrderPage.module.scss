@@ -1,108 +1,120 @@
 .orderMain {
-  display: flex;
-  position: relative;
-  min-height: 100vh;
+    display: flex;
+    position: relative;
+    min-height: 100vh;
 }
 
 .orderMainContainer {
-  width: calc(100% - 64px);
-  height: 100%;
-  display: flex;
-  flex-direction: column;
+    width: calc(100% - 64px);
+    height: 100%;
+    display: flex;
+    flex-direction: column;
 }
 
 .mapContainer {
-  padding: 32px 64px;
-  width: calc(71% - 32px);
-  border-right: 1px solid #EEEEEE;
+    padding: 32px 64px;
+    width: calc(71% - 32px);
+    border-right: 1px solid #EEEEEE;
 }
 
 .orderWrap {
-  display: flex;
+    display: flex;
+    height: 100%;
+    min-height: calc(100vh - 136px);
 }
 
 .mapForm {
-  margin-bottom: 45px;
+    margin-bottom: 45px;
 }
 
 .none {
-  display: none !important;
+    display: none !important;
 }
 
 .orderDetails {
-  padding: 32px 64px 32px 32px;
-  width: calc(29% - 32px);
+    padding: 32px 64px 32px 32px;
+    width: calc(29% - 32px);
 }
 
 .yourOrder {
-  font-weight: 500;
-  font-size: 18px;
-  line-height: 21px;
-  text-align: right;
-  color: #121212; 
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 21px;
+    text-align: right;
+    color: #121212;
 }
 
 .yourOrderContainer {
-  margin-bottom: 26px;
-  display: flex;
-  justify-content: flex-end;
+    margin-bottom: 26px;
+    display: flex;
+    justify-content: flex-end;
 }
 
 .orderPoint {
-  display: flex;
-  align-items: flex-end;
-  margin-bottom: 32px;
+    display: flex;
+    align-items: flex-end;
+    margin-bottom: 32px;
 }
 
 .pointTitle {
-  margin-right: 12px;
-  font-weight: 300;
-  font-size: 14px;
-  line-height: 16px;
-  color: #121212;
-}
-
-.dots {
-  font-weight: 300;
-  font-size: 14px;
-  line-height: 16px;
-  color: #999999;
-  margin-right: 12px;
-}
-
-.point {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  align-items: flex-end;
-  span {
+    margin-right: 12px;
     font-weight: 300;
     font-size: 14px;
     line-height: 16px;
-    color: #999999;
-  }
+    color: #121212;
+    white-space: nowrap;
+}
+
+.dots {
+    flex: 1;
+    overflow: hidden;
+    margin-right: 11px;
+    &:after {
+        content: '..................................................';
+        display: block;
+        white-space: nowrap;
+        overflow: hidden;
+        width: 100%;
+        max-width: 100%;
+        color: #999999;
+        font-size: 15px;
+    }
+}
+
+.point {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: flex-end;
+    span {
+        font-weight: 300;
+        font-size: 14px;
+        line-height: 16px;
+        color: #999999;
+    }
 }
 
 .chooseModelButton {
-  background: linear-gradient(90deg, hsla(148, 87%, 41%, 1) 2.61%, hsla(158, 96%, 32%, 1) 112.6%);
-  background-blend-mode: darken;
-  border-radius: 8px;
-  border: none;
-  width: 287px;
-  padding: 15px 5px;
-  font-weight: 500;
-  font-size: 18px;
-  line-height: 21px;
-  text-align: center;
-  color: #FFFFFF;
-  &:disabled {
-    background: #EEEEEE;
-    cursor: default;
-  }
-  &:hover {
-    background: linear-gradient(90deg, hsla(148, 87%, 31%, 1) 2.61%, hsla(158, 96%, 22%, 1) 112.6%);
-  }
-  &:active {
-    background: linear-gradient(90deg, hsla(148, 87%, 21%, 1) 2.61%, hsla(158, 96%, 12%, 1) 112.6%);
-  }
+    background: linear-gradient(90deg, hsla(148, 87%, 41%, 1) 2.61%, hsla(158, 96%, 32%, 1) 112.6%);
+    background-blend-mode: darken;
+    border-radius: 8px;
+    border: none;
+    width: 100%;
+    padding: 15px 5px;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 21px;
+    text-align: center;
+    color: #FFFFFF;
+    &:disabled {
+        background: #EEEEEE;
+        cursor: default;
+        pointer-events: none;
+    }
+    &:hover {
+        background: linear-gradient(90deg, hsla(148, 87%, 31%, 1) 2.61%, hsla(158, 96%, 22%, 1) 112.6%);
+    }
+    &:active {
+        background: linear-gradient(90deg, hsla(148, 87%, 21%, 1) 2.61%, hsla(158, 96%, 12%, 1) 112.6%);
+    }
 }
