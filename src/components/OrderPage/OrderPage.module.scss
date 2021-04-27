@@ -11,9 +11,9 @@
     flex-direction: column;
 }
 
-.mapContainer {
+.rightContainer {
     padding: 32px 64px;
-    width: calc(71% - 32px);
+    width: 70%;
     border-right: 1px solid #EEEEEE;
 }
 
@@ -23,17 +23,9 @@
     min-height: calc(100vh - 136px);
 }
 
-.mapForm {
-    margin-bottom: 45px;
-}
-
-.none {
-    display: none !important;
-}
-
-.orderDetails {
+.leftContainer {
     padding: 32px 64px 32px 32px;
-    width: calc(29% - 32px);
+    width: 30%;
 }
 
 .yourOrder {

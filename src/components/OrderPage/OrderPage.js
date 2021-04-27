@@ -9,10 +9,8 @@ import { connect } from "react-redux";
 import { fetchPoints } from "../../redux/map";
 import Geocode from "react-geocode";
 import { getCitiesWithMemo, getMarkersWithMemo } from "../../redux/selectors";
-import TextField from "@material-ui/core/TextField";
-import Autocomplete from "@material-ui/lab/Autocomplete";
-import { createFilterOptions } from "@material-ui/lab/Autocomplete";
 import apiKey from "../../api/apiKey";
+import MapForm from "./MapForm/MapForm";
 
 const OrderPage = ({ fetchPoints, citiesFromState, markers }) => {
   useEffect(() => {
@@ -35,16 +33,6 @@ const OrderPage = ({ fetchPoints, citiesFromState, markers }) => {
 
   const [zoom, setZoom] = useState(12);
 
-  const filterOptionsForCity = createFilterOptions({
-    matchFrom: "start",
-    stringify: (option) => option.name,
-  });
-
-  const filterOptionsForAddress = createFilterOptions({
-    matchFrom: "start",
-    stringify: (option) => option.address,
-  });
-
   const filteredMarkers = currentCity
     ? markers.filter((marker) => marker.city.name === currentCity.name)
     : markers;
@@ -57,69 +45,17 @@ const OrderPage = ({ fetchPoints, citiesFromState, markers }) => {
         <OrderPageHeader />
         <OrderPageNav />
         <div className={styles.orderWrap}>
-          <div className={styles.mapContainer}>
-            <div className={styles.mapForm}>
-              <Autocomplete
-                id="city-select"
-                classes={{
-                  popupIndicator: styles.none,
-                }}
-                options={citiesFromState}
-                getOptionLabel={(option) => option.name}
-                style={{ width: 300 }}
-                getOptionSelected={(option, value) => option.id === value.id}
-                filterOptions={filterOptionsForCity}
-                renderInput={(params) => (
-                  <TextField {...params} label="Город" />
-                )}
-                onChange={(event, value, reason) => {
-                  if (reason === "select-option") {
-                    setCenter({ lat: value.lat, lng: value.lng });
-                    setCurrentCity(value);
-                    setZoom(12);
-                    setCurrentAddress(null);
-                  }
-                  if (reason === "clear") {
-                    setCurrentCity(null);
-                    setCurrentAddress(null);
-                    setZoom(12);
-                  }
-                }}
-                value={currentCity}
-              />
-              <Autocomplete
-                id="point-select"
-                classes={{
-                  popupIndicator: styles.none,
-                }}
-                options={filteredMarkers}
-                getOptionLabel={(option) => option.address}
-                filterOptions={filterOptionsForAddress}
-                style={{ width: 300 }}
-                getOptionSelected={(option, value) => option.id === value.id}
-                renderInput={(params) => (
-                  <TextField
-                    {...params}
-                    label="Пункт выдачи"
-                  />
-                )}
-                onChange={(event, value, reason) => {
-                  if (reason === "select-option") {
-                    setCenter({ lat: value.lat, lng: value.lng });
-                    setZoom(14);
-                    if (currentCity === null) {
-                      setCurrentCity(value.city);
-                    }
-                    setCurrentAddress(value);
-                  }
-                  if (reason === "clear") {
-                    setCurrentAddress(null);
-                    setZoom(12);
-                  }
-                }}
-                value={currentAddress}
-              />
-            </div>
+          <div className={styles.rightContainer}>
+            <MapForm
+              citiesFromState={citiesFromState}
+              filteredMarkers={filteredMarkers}
+              currentCity={currentCity}
+              currentAddress={currentAddress}
+              setCenter={setCenter}
+              setCurrentCity={setCurrentCity}
+              setZoom={setZoom}
+              setCurrentAddress={setCurrentAddress}
+            />
             <OrderPageMap
               center={center}
               zoom={zoom}
@@ -129,7 +65,7 @@ const OrderPage = ({ fetchPoints, citiesFromState, markers }) => {
               setCurrentAddress={setCurrentAddress}
             />
           </div>
-          <div className={styles.orderDetails}>
+          <div className={styles.leftContainer}>
             <div className={styles.yourOrderContainer}>
               <span className={styles.yourOrder}>Ваш заказ:</span>
             </div>
