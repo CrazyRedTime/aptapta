@@ -1,11 +1,13 @@
 import styles from "./Marker.module.scss";
 import cn from "classnames";
 
-const Marker = ({ color, name, setCurrentCity, setCurrentAddress, marker }) => {
+const Marker = ({ color, name, setCurrentCity, setCurrentAddress, marker, setZoom, setCenter }) => {
 
   const hadleMarker = () => {
     setCurrentCity(marker.city);
     setCurrentAddress(marker);
+    setCenter({ lat: marker.lat, lng: marker.lng })
+    setZoom(14);
   }
 
   return (

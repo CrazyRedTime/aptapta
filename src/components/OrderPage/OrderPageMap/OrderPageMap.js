@@ -7,7 +7,7 @@ import { getMarkersWithMemo, getPointsAddress } from "../../../redux/selectors";
 import Marker from "./Marker/Marker";
 // import styles from "./OrderPageMap.module.scss";
 
-const OrderPageMap = ({ center, points, fetchMarkers, markers, zoom, setCurrentCity, setCurrentAddress }) => {
+const OrderPageMap = ({ center, points, fetchMarkers, markers, zoom, setZoom, setCenter, setCurrentCity, setCurrentAddress }) => {
 
   useEffect(() => {
     if (points.length) {
@@ -34,6 +34,8 @@ const OrderPageMap = ({ center, points, fetchMarkers, markers, zoom, setCurrentC
               setCurrentCity={setCurrentCity}
               setCurrentAddress={setCurrentAddress}
               marker={marker}
+              setZoom={setZoom}
+              setCenter={setCenter}
             />
           );
         })}

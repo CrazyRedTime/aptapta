@@ -82,6 +82,7 @@ const OrderPage = ({ fetchPoints, citiesFromState, markers }) => {
                   if (reason === "clear") {
                     setCurrentCity(null);
                     setCurrentAddress(null);
+                    setZoom(12);
                   }
                 }}
                 value={currentCity}
@@ -114,6 +115,7 @@ const OrderPage = ({ fetchPoints, citiesFromState, markers }) => {
                   }
                   if (reason === "clear") {
                     setCurrentAddress(null);
+                    setZoom(12);
                   }
                 }}
                 value={currentAddress}
@@ -122,6 +124,8 @@ const OrderPage = ({ fetchPoints, citiesFromState, markers }) => {
             <OrderPageMap
               center={center}
               zoom={zoom}
+              setZoom={setZoom}
+              setCenter={setCenter}
               setCurrentCity={setCurrentCity}
               setCurrentAddress={setCurrentAddress}
             />
