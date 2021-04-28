@@ -5,17 +5,19 @@ import styles from "./OrderPage.module.scss";
 import OrderPageHeader from "./OrderPageHeader/OrderPageHeader";
 import OrderPageNav from "./OrderPageNav/OrderPageNav";
 import OrderPageMap from "./OrderPageMap/OrderPageMap";
-import { connect, useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { fetchPoints } from "../../redux/map";
 import Geocode from "react-geocode";
 import { getCitiesWithMemo, getMarkersWithMemo } from "../../redux/selectors";
 import apiKey from "../../api/apiKey";
 import MapForm from "./MapForm/MapForm";
 
-const OrderPage = ({ fetchPoints }) => {
+const OrderPage = () => {
 
   const markers = useSelector(getMarkersWithMemo);
   const citiesFromState = useSelector(getCitiesWithMemo)
+
+  const dispatch = useDispatch();
 
   useEffect(() => {
     Geocode.setApiKey(apiKey);
@@ -24,8 +26,8 @@ const OrderPage = ({ fetchPoints }) => {
   }, []);
 
   useEffect(() => {
-    fetchPoints();
-  }, [fetchPoints]);
+    dispatch(fetchPoints());
+  }, [dispatch]);
 
   const [center, setCenter] = useState({ lat: 54.3186575, lng: 48.397776 });
 
@@ -97,4 +99,4 @@ const OrderPage = ({ fetchPoints }) => {
   );
 };
 
-export default connect(null, { fetchPoints })(OrderPage);
+export default OrderPage;
