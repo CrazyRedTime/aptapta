@@ -70,13 +70,13 @@ code {
     }
 }
 
-@media (max-width: 1024px) {
+@media (max-width: 1280px) {
     .slider {
         width: calc(40% - 32px) !important;
     }
 }
 
-@media (max-width: 900px) {
+@media (max-width: 1024px) {
     .slider {
         display: none !important;
     }
