@@ -1,13 +1,15 @@
 import GoogleMapReact from "google-map-react";
 import { useEffect } from "react";
-import { connect } from "react-redux";
+import { connect, useSelector } from "react-redux";
 import apiKey from "../../../api/apiKey";
 import { fetchMarkers } from "../../../redux/map";
-import { getMarkersWithMemo, getPointsAddress } from "../../../redux/selectors";
+import { getPointsAddress } from "../../../redux/selectors";
 import Marker from "./Marker/Marker";
 // import styles from "./OrderPageMap.module.scss";
 
-const OrderPageMap = ({ center, points, fetchMarkers, markers, zoom, setZoom, setCenter, setCurrentCity, setCurrentAddress }) => {
+const OrderPageMap = ({ center, fetchMarkers, markers, zoom, setZoom, setCenter, setCurrentCity, setCurrentAddress }) => {
+
+  const points = useSelector(getPointsAddress);
 
   useEffect(() => {
     if (points.length) {
@@ -44,11 +46,4 @@ const OrderPageMap = ({ center, points, fetchMarkers, markers, zoom, setZoom, se
   );
 };
 
-const mapStateToProps = (state) => {
-  return {
-    points: getPointsAddress(state),
-    markers: getMarkersWithMemo(state),
-  };
-};
-
-export default connect(mapStateToProps, { fetchMarkers })(OrderPageMap);
+export default connect(null, { fetchMarkers })(OrderPageMap);
