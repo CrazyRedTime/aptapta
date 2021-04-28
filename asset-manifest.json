@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/aptapta/static/css/main.07620447.chunk.css",
+    "main.css": "/aptapta/static/css/main.78d49560.chunk.css",
     "main.js": "/aptapta/static/js/main.1ec10547.chunk.js",
     "main.js.map": "/aptapta/static/js/main.1ec10547.chunk.js.map",
     "runtime-main.js": "/aptapta/static/js/runtime-main.746dd845.js",
@@ -8,14 +8,14 @@
     "static/js/2.a948b07d.chunk.js": "/aptapta/static/js/2.a948b07d.chunk.js",
     "static/js/2.a948b07d.chunk.js.map": "/aptapta/static/js/2.a948b07d.chunk.js.map",
     "index.html": "/aptapta/index.html",
-    "static/css/main.07620447.chunk.css.map": "/aptapta/static/css/main.07620447.chunk.css.map",
+    "static/css/main.78d49560.chunk.css.map": "/aptapta/static/css/main.78d49560.chunk.css.map",
     "static/js/2.a948b07d.chunk.js.LICENSE.txt": "/aptapta/static/js/2.a948b07d.chunk.js.LICENSE.txt",
     "static/media/OrderPageNav.module.scss": "/aptapta/static/media/listItem.ce81e742.svg"
   },
   "entrypoints": [
     "static/js/runtime-main.746dd845.js",
     "static/js/2.a948b07d.chunk.js",
-    "static/css/main.07620447.chunk.css",
+    "static/css/main.78d49560.chunk.css",
     "static/js/main.1ec10547.chunk.js"
   ]
 }
