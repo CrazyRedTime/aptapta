@@ -69,7 +69,7 @@
 }
 
 .rentButton {
-    background: linear-gradient(90deg, hsla(148, 87%, 41%, 1) 2.61%, hsla(158, 96%, 32%, 1) 112.6%);
+    background: linear-gradient(90deg, #0EC261 2.61%, #039F67 112.6%);
     border-radius: 8px;
     border: none;
     font-style: normal;
@@ -81,10 +81,10 @@
     width: 250px;
     padding: 14px 5px;
     &:hover {
-      background: linear-gradient(90deg, hsla(148, 87%, 31%, 1) 2.61%, hsla(158, 96%, 22%, 1) 112.6%);
+      background: linear-gradient(90deg, darken(#0EC261, 10%) 2.61%, darken(#039F67, 10%) 112.6%);
     }
     &:active {
-      background: linear-gradient(90deg, hsla(148, 87%, 21%, 1) 2.61%, hsla(158, 96%, 12%, 1) 112.6%);
+      background: linear-gradient(90deg, darken(#0EC261, 20%) 2.61%, darken(#039F67, 20%) 112.6%);
     }
 }
 

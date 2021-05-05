@@ -95,12 +95,12 @@
 }
 
 .green {
-  background: linear-gradient(90deg, hsla(169, 59%, 18%, 1) 0%, hsla(128, 82%, 26%, 1) 100%);
+  background: linear-gradient(90deg, #13493F 0%, #0C7B1B 100%);
   &:hover {
-    background: linear-gradient(90deg, hsla(148, 87%, 8%, 1) 2.61%, hsla(158, 96%, 16%, 1) 112.6%);
+    background: linear-gradient(90deg, darken(#13493F, 10%) 0%, darken(#0C7B1B, 10%) 100%);
   }
   &:active {
-    background: linear-gradient(90deg, hsla(148, 87%, -2%, 1) 2.61%, hsla(158, 96%, 6%, 1) 112.6%);
+    background: linear-gradient(90deg, darken(#13493F, 20%) 0%, darken(#0C7B1B, 20%) 100%);
   }
 }
 
