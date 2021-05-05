@@ -1,0 +1,49 @@
+.car {
+  width: 368px;
+  height: 224px;
+  border: 1px solid #eee;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.car:hover {
+  border-color: #999;
+}
+
+.active {
+  border-color: #0EC261!important;
+}
+
+.name {
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 21px;
+  color: #121212;
+}
+
+.price {
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 16px;
+  color: #999999;
+}
+
+.carImage {
+  width: 256px;
+  height: 116px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: right;
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+}
+
+.imageContainer {
+  display: flex;
+  justify-content: flex-end;
+}

@@ -1,10 +1,13 @@
 import { applyMiddleware, combineReducers, compose, createStore } from "redux";
 import thunk from "redux-thunk";
-import map from './map'
-
+import map from './map/map'
+import order from './order/order'
+import cars from './cars/cars'
 
 const reducers = combineReducers({
-    map
+    map,
+    order,
+    cars
   }
 );
 

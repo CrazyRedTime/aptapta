@@ -1,9 +1,9 @@
 import GoogleMapReact from "google-map-react";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import apiKey from "../../../api/apiKey";
-import { fetchMarkers } from "../../../redux/map";
-import { getPointsAddress } from "../../../redux/selectors";
+import apiKey from "../../../../api/apiKey";
+import { fetchMarkers } from "../../../../redux/map/map";
+import { getPointsAddress } from "../../../../redux/map/selectors";
 import Marker from "./Marker/Marker";
 // import styles from "./OrderPageMap.module.scss";
 
@@ -20,7 +20,7 @@ const OrderPageMap = ({ center, markers, zoom, setZoom, setCenter, setCurrentCit
   }, [dispatch, points]);
 
   return (
-    <div style={{ height: "400px", width: "800px" }}>
+    <div style={{ height: "368px", width: "736px" }}>
       <GoogleMapReact
         bootstrapURLKeys={{ key: apiKey }}
         center={center}

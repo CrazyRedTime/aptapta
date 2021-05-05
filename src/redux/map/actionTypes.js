@@ -3,3 +3,7 @@ export const FETCH_POINTS_SUCCESS = 'FETCH_POINTS_SUCCESS';
 export const FETCH_POINTS_FAILURE = 'FETCH_POINTS_FAILURE';
 
 export const FETCH_MARKERS = 'FETCH_MARKERS';
+
+
+export const SET_CENTER = 'SET_CENTER';
+export const SET_ZOOM = 'SET_ZOOM';

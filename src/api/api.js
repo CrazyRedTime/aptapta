@@ -28,10 +28,15 @@ const getMarkerForMap = async (point) => {
   }, address: point.address, id: point.id };
 }
 
+const getCarsFromApi = async () => {
+  const response = await template.get(`db/car`);
+  return response.data.data;
+}
 
 const api = {
   getPointsFromApi,
   getMarkerForMap,
+  getCarsFromApi
 }
 
 export default api;

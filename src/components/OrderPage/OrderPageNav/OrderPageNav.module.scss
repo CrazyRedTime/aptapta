@@ -12,7 +12,7 @@
             font-weight: bold;
             font-size: 14px;
             line-height: 16px;
-            color: #999999;
+            color: #121212;;
             transition: 0.3s linear;
             text-decoration: none;
             margin-right: 38px;
@@ -37,4 +37,14 @@
             }
         }
     }
+}
+
+.disabled {
+  color: #999!important;
+  pointer-events: none;
+  cursor: default;
+}
+
+.active {
+  color: #0EC261!important;
 }
