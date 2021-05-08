@@ -33,10 +33,16 @@ const getCarsFromApi = async () => {
   return response.data.data;
 }
 
+const getRateFromApi = async () => {
+  const response = await template.get(`db/rate`);
+  console.log(response.data.data)
+};
+
 const api = {
   getPointsFromApi,
   getMarkerForMap,
-  getCarsFromApi
+  getCarsFromApi,
+  getRateFromApi
 }
 
 export default api;

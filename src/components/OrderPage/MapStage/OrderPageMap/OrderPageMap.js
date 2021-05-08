@@ -14,10 +14,10 @@ const OrderPageMap = ({ center, markers, zoom, setZoom, setCenter, setCurrentCit
   const points = useSelector(getPointsAddress);
 
   useEffect(() => {
-    if (points.length) {
+    if (points.length && !markers.length) {
       dispatch(fetchMarkers(points));
     }
-  }, [dispatch, points]);
+  }, [dispatch, points, markers]);
 
   return (
     <div style={{ height: "368px", width: "736px" }}>

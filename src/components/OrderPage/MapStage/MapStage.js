@@ -1,17 +1,28 @@
 import { useDispatch, useSelector } from "react-redux";
 import { fetchPoints, setCenter, setZoom } from "../../../redux/map/map";
 import { setCurrentAddress, setCurrentCar, setCurrentCity } from "../../../redux/order/order";
-import { getCurrentCityWithMemo } from "../../../redux/order/selectors";
-import { getCenterWithMemo, getCitiesWithMemo, getMarkersWithMemo, getZoom } from "../../../redux/map/selectors";
+import { getCarStageIsCompleted, getCurrentAddressWithMemo, getCurrentCityWithMemo, getMapStageIsCompleted } from "../../../redux/order/selectors";
+import { getCenterWithMemo, getCitiesWithMemo, getMarkersWithMemo, getPointsAddress, getZoom } from "../../../redux/map/selectors";
 import MapForm from "./MapForm/MapForm";
 import OrderPageMap from "./OrderPageMap/OrderPageMap";
 import { useEffect } from "react";
 import Geocode from "react-geocode";
 import apiKey from "../../../api/apiKey";
+import { clearDetails } from "../../../redux/details/details";
 
-const MapStage = ({currentAddress }) => {
+const MapStage = () => {
 
   const dispatch = useDispatch();
+
+  const currentAddress = useSelector(getCurrentAddressWithMemo);
+  const markers = useSelector(getMarkersWithMemo);
+  const citiesFromState = useSelector(getCitiesWithMemo)
+  const center = useSelector(getCenterWithMemo);
+  const zoom = useSelector(getZoom);
+  const currentCity = useSelector(getCurrentCityWithMemo);
+  const mapStageIsCompleted = useSelector(getMapStageIsCompleted);
+  const carStageIsCompleted = useSelector(getCarStageIsCompleted);
+  const points = useSelector(getPointsAddress);
 
   useEffect(() => {
     Geocode.setApiKey(apiKey);
@@ -20,14 +31,11 @@ const MapStage = ({currentAddress }) => {
   }, []);
 
   useEffect(() => {
-    dispatch(fetchPoints());
-  }, [dispatch]);
+    if (!points.length) {
+      dispatch(fetchPoints());
+    }
+  }, [dispatch, points]);
 
-  const markers = useSelector(getMarkersWithMemo);
-  const citiesFromState = useSelector(getCitiesWithMemo)
-  const center = useSelector(getCenterWithMemo);
-  const zoom = useSelector(getZoom);
-  const currentCity = useSelector(getCurrentCityWithMemo);
 
   const changeCenter = (newCenter) => {
     dispatch(setCenter(newCenter))
@@ -39,8 +47,13 @@ const MapStage = ({currentAddress }) => {
 
   const changeCurrentAddress = (newAddress) => {
     dispatch(setCurrentAddress(newAddress));
-    dispatch(setCurrentCar(null));
-  }
+    if (mapStageIsCompleted) {
+      dispatch(setCurrentCar(null));
+    }
+    if (carStageIsCompleted) {
+      dispatch(clearDetails())
+    }
+  };
 
   const changeCurrentCity = (newCity) => {
     dispatch(setCurrentCity(newCity));

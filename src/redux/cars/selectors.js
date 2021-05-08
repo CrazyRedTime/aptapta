@@ -26,3 +26,7 @@ export const getCategoriesWithMemo = createSelector(
   [getCategoriesFromState],
   (categories) => categories
 );
+
+export const getCurrentCarColors = (state) => {
+  return state.order.currentCar.colors
+};

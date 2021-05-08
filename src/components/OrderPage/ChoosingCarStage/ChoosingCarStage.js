@@ -12,13 +12,15 @@ const ChoosingCarStage = () => {
 
   const currentCategory = useSelector(getCurrentCategory);
 
-  useEffect(() => {
-    dispatch(fetchCars());
-  }, [dispatch]);
-
   const cars = useSelector(getCarsWithMemo);
 
   const categories = useSelector(getCategoriesWithMemo);
+
+  useEffect(() => {
+    if (!cars.length) {
+      dispatch(fetchCars());
+    }
+  }, [dispatch, cars]);
 
   const onRadioChange = (e) => {
     dispatch(setCurrentCategory(e.target.value));
