@@ -1,6 +1,7 @@
 import {
   COMPLETE_MAP_STAGE,
   COMPLETE_CAR_STAGE,
+  COMPLETE_ADDITIONAL_STAGE,
   SET_CURRENT_ADDRESS,
   SET_CURRENT_CITY,
   SET_CURRENT_CAR,
@@ -14,7 +15,7 @@ const initialState = {
   currentCategory: "",
   mapStageIsCompleted: false,
   carStageIsCompleted: false,
-  additionalStageISCompleted: false,
+  additionalStageIsCompleted: false,
   finalStageIsCompleted: false,
 };
 
@@ -60,6 +61,12 @@ const order = (state = initialState, { type, payload }) => {
         carStageIsCompleted: true,
       };
 
+    case COMPLETE_ADDITIONAL_STAGE:
+      return {
+        ...state,
+        additionalStageIsCompleted: true
+      }
+
     default:
       return state;
   }
@@ -102,6 +109,12 @@ export const completeMapStage = () => (dispatch) => {
 export const completeCarStage = () => (dispatch) => {
   dispatch({
     type: COMPLETE_CAR_STAGE,
+  });
+};
+
+export const completeAdditionalStage = () => (dispatch) => {
+  dispatch({
+    type: COMPLETE_ADDITIONAL_STAGE,
   });
 };
 

@@ -1,5 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
-import { completeCarStage, completeMapStage } from "../../../redux/order/order";
+import { getCurrentRate, getFromDate, getToDate } from "../../../redux/details/selectors";
+import { completeAdditionalStage, completeCarStage, completeMapStage } from "../../../redux/order/order";
 import {
   getCurrentAddressWithMemo,
   getCurrentCarName,
@@ -10,6 +11,9 @@ const OrderStatus = ({ currentStage, setCurrentStage }) => {
   const currentAddress = useSelector(getCurrentAddressWithMemo);
 
   const currentCarName = useSelector(getCurrentCarName);
+  const from = useSelector(getFromDate);
+  const to = useSelector(getToDate);
+  const currentRate = useSelector(getCurrentRate);
 
   const dispatch = useDispatch();
 
@@ -44,10 +48,10 @@ const OrderStatus = ({ currentStage, setCurrentStage }) => {
       return (
         <button
           className={styles.chooseModelButton}
-          disabled={true}
+          disabled={!(from && to && currentRate)}
           onClick={() => {
-            setCurrentStage(3);
-            dispatch(completeCarStage());
+            setCurrentStage(4);
+            dispatch(completeAdditionalStage());
           }}
         >
           Итого

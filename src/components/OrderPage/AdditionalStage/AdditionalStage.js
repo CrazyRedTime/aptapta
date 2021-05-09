@@ -1,37 +1,47 @@
 import { useDispatch, useSelector } from "react-redux";
 import { getCurrentCarColors } from "../../../redux/cars/selectors";
-import { setColor, setFrom, setTo } from "../../../redux/details/details";
+import { setBabySeat, setColor, setFrom, setFulltank, setRate, setRightHandDrive, setTo } from "../../../redux/details/details";
 import {
   getCurrentColor,
   getFromDate,
   getToDate,
+  getCurrentRate,
+  getFullTank,
+  getBabySeat,
+  getRigthHandDrive
 } from "../../../redux/details/selectors";
 import DatePicker, { registerLocale } from "react-datepicker";
 import { addDays, addMinutes } from "date-fns";
 import ru from "date-fns/locale/ru";
-import api from '../../../api/api'
 import { useEffect } from "react";
-
 
 import "react-datepicker/dist/react-datepicker.css";
 import styles from "./AdditionalStage.module.scss";
-
+import { fetchRates } from "../../../redux/rates/rates";
+import { getRatesWithMemo } from "../../../redux/rates/selectors";
 
 const AdditionalStage = () => {
   const dispatch = useDispatch();
+
+  const colors = useSelector(getCurrentCarColors);
+  const currentColor = useSelector(getCurrentColor);
+  const from = useSelector(getFromDate);
+  const to = useSelector(getToDate);
+  const rates = useSelector(getRatesWithMemo);
+  const currentRate = useSelector(getCurrentRate);
+  const fulltank = useSelector(getFullTank);
+  const babySeat = useSelector(getBabySeat);
+  const rightHandDrive = useSelector(getRigthHandDrive);
 
   useEffect(() => {
     registerLocale("ru", ru);
   }, []);
 
   useEffect(() => {
-    api.getRateFromApi()
-  }, []);
-
-  const colors = useSelector(getCurrentCarColors);
-  const currentColor = useSelector(getCurrentColor);
-  const from = useSelector(getFromDate);
-  const to = useSelector(getToDate);
+    if (!rates.length) {
+      dispatch(fetchRates());
+    }
+  }, [dispatch, rates]);
 
   const onColorChange = (e) => {
     dispatch(setColor(e.target.value));
@@ -45,20 +55,38 @@ const AdditionalStage = () => {
     dispatch(setTo(to));
   };
 
-  const filterPassedTime = time => {
+  const onRateChange = (rate) => {
+    dispatch(setRate(rate));
+  };
+
+  const onFulltankChange = () => {
+    dispatch(setFulltank(!fulltank))
+  };
+
+  const onBabySeatChange = () => {
+    dispatch(setBabySeat(!babySeat))
+  };
+
+  const onRigthHandDriveChange = () => {
+    dispatch(setRightHandDrive(!rightHandDrive))
+  };
+
+  const filterPassedTime = (time) => {
     const currentDate = new Date();
     const selectedDate = new Date(time);
     // if (to) {
     //   return currentDate.getTime() < selectedDate.getTime() && selectedDate.getTime() <= to.getTime();
     // }
     return currentDate.getTime() < selectedDate.getTime();
-  }
+  };
 
-  const filterFutureTime = time => {
-    const currentDate = from ? addMinutes(new Date(from), 30) : addMinutes(new Date(), 30);
+  const filterFutureTime = (time) => {
+    const currentDate = from
+      ? addMinutes(new Date(from), 30)
+      : addMinutes(new Date(), 30);
     const selectedDate = new Date(time);
     return currentDate.getTime() <= selectedDate.getTime();
-  }
+  };
 
   return (
     <div>
@@ -103,15 +131,15 @@ const AdditionalStage = () => {
               // maxTime={to ? to : setHours(setMinutes(new Date(), 59), 23)}
               onChange={(date) => {
                 onFromChange(date);
-                onToChange(null)
+                onToChange(null);
               }}
               showTimeSelect
               isClearable
               dateFormat="dd.MM.yyyy HH:mm "
             />
           </label>
-          </div>
-          <div>
+        </div>
+        <div>
           <label>
             <span>По</span>
             <DatePicker
@@ -130,6 +158,27 @@ const AdditionalStage = () => {
             />
           </label>
         </div>
+      </div>
+      <div className={styles.rates}>
+        <span>Тариф</span>
+        {rates.map((rate) => {
+          return <label key={rate.id}>
+          <input
+            type="radio"
+            checked={currentRate.id === rate.id}
+            onChange={() => onRateChange(rate)}
+          />{" "}
+          {`${rate.rateTypeId.name}, ${rate.price}₽/${rate.rateTypeId.unit}`}
+        </label>
+        })}
+      </div>
+      <div className={styles.options}>
+        <span>
+          Доп услуги
+        </span>
+        <label><input type="checkbox" checked={fulltank} onChange={onFulltankChange} /> Полный бак, 500р</label>
+        <label><input type="checkbox" checked={babySeat} onChange={onBabySeatChange} /> Детское кресло, 200р</label>
+        <label><input type="checkbox" checked={rightHandDrive} onChange={onRigthHandDriveChange} /> Правый руль, 1600р</label>
       </div>
     </div>
   );
