@@ -119,3 +119,19 @@ code {
     font-size: 14px;
     padding: 0!important;
 }
+
+@media (max-width: 628px) {
+    .MuiAutocomplete-root {
+        width: 100%!important;
+        max-width: 100%;
+    }
+    .MuiFormControl-fullWidth {
+        width: 100%;
+        flex-direction: column!important;
+        align-items: flex-start;
+    }
+    .MuiFormLabel-root {
+        width: 100%!important;
+        justify-content: flex-start;
+    }
+}

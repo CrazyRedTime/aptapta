@@ -16,64 +16,64 @@
 }
 
 .langButton {
-  background-color: transparent;
-  border: none;
-  height: 48px;
-  width: 48px;
-  border-radius: 50%;
-  font-style: normal;
-  font-weight: bold;
-  font-size: 13px;
-  line-height: 15px;
-  color: #0EC261;
-  text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  &:hover {
-    border: 1px solid #EEEEEE;
-    color: #EEEEEE;
-  }
-  &:active {
-    border: 1px solid #EEEEEE;
+    background-color: transparent;
+    border: none;
+    height: 48px;
+    width: 48px;
+    border-radius: 50%;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 13px;
+    line-height: 15px;
     color: #0EC261;
-  }
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    &:hover {
+        border: 1px solid #EEEEEE;
+        color: #EEEEEE;
+    }
+    &:active {
+        border: 1px solid #EEEEEE;
+        color: #0EC261;
+    }
 }
 
 @media (max-width: 1024px) {
-  .menu {
-    width: 86px;
-    padding: 37px 27px;
-  }
+    .menu {
+        width: 86px;
+        padding: 37px 27px;
+    }
 }
 
 @media (max-width: 628px) {
-  .menu {
-    width: 51px;
-    padding: 21px 24px;
-    position: absolute;
-    top: 0;
-    left: 0;
-    background-color: transparent;
-    height: 100%;
-  }
-  .menuButton {
-    div {
-      svg {
-        path {
-          stroke: #000;
+    .menu {
+        width: 50px;
+        padding: 21px 24px;
+        position: absolute;
+        top: 0;
+        left: 15px;
+        background-color: transparent;
+        height: 100%;
+    }
+    .menuButton {
+        div {
+            svg {
+                path {
+                    stroke: #000;
+                }
+            }
         }
-      }
     }
-  }
-  .langButton {
-    display: none;
-    &.showMobile {
-      display: block;
-      position: relative;
-      z-index: 100;
+    .langButton {
+        display: none;
+        &.showMobile {
+            display: block;
+            position: relative;
+            z-index: 100;
+        }
     }
-  }
-  .closeButton {
-    path {
-    stroke: #fff !important;
+    .closeButton {
+        path {
+            stroke: #fff !important;
+        }
     }
-  }
 }

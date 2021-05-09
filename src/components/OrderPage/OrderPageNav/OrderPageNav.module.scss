@@ -1,7 +1,8 @@
 .nav {
     margin: 0;
-    padding: 8px 64px;
+    padding: 6px 64px;
     display: flex;
+    flex-wrap: wrap;
     border-top: 1px solid #EEEEEE;
     border-bottom: 1px solid #EEEEEE;
     li {
@@ -12,7 +13,8 @@
             font-weight: bold;
             font-size: 14px;
             line-height: 16px;
-            color: #121212;;
+            color: #121212;
+            ;
             transition: 0.3s linear;
             text-decoration: none;
             margin-right: 38px;
@@ -40,11 +42,11 @@
 }
 
 .disabled {
-  color: #999!important;
-  pointer-events: none;
-  cursor: default;
+    color: #999!important;
+    pointer-events: none;
+    cursor: default;
 }
 
 .active {
-  color: #0EC261!important;
+    color: #0EC261!important;
 }

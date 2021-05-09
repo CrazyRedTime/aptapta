@@ -5,7 +5,7 @@ import apiKey from "../../../../api/apiKey";
 import { fetchMarkers } from "../../../../redux/map/map";
 import { getPointsAddress } from "../../../../redux/map/selectors";
 import Marker from "./Marker/Marker";
-// import styles from "./OrderPageMap.module.scss";
+import styles from "./OrderPageMap.module.scss";
 
 const OrderPageMap = ({ center, markers, zoom, setZoom, setCenter, setCurrentCity, setCurrentAddress }) => {
 
@@ -20,7 +20,7 @@ const OrderPageMap = ({ center, markers, zoom, setZoom, setCenter, setCurrentCit
   }, [dispatch, points, markers]);
 
   return (
-    <div style={{ height: "368px", width: "736px" }}>
+    <div className={styles.map}>
       <GoogleMapReact
         bootstrapURLKeys={{ key: apiKey }}
         center={center}

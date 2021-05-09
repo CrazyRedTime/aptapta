@@ -14,6 +14,7 @@ import DatePicker, { registerLocale } from "react-datepicker";
 import { addDays, addMinutes } from "date-fns";
 import ru from "date-fns/locale/ru";
 import { useEffect } from "react";
+import cn from 'classnames';
 
 import "react-datepicker/dist/react-datepicker.css";
 import styles from "./AdditionalStage.module.scss";
@@ -89,40 +90,49 @@ const AdditionalStage = () => {
   };
 
   return (
-    <div>
-      <span>Цвет</span>
-      <div>
-        <label>
+    <div className={styles.additionalContainer}>
+      <div className={cn(styles.additionalItem, styles.radio)}>
+        <span className={styles.additionalTitle}>Цвет</span>
+        <div className={styles.colorsContainer}>
+        <div className={styles.colorWrapper}>
           <input
+            id="color0"
             type="radio"
             value=""
             checked={currentColor === ""}
             onChange={onColorChange}
           />{" "}
-          Любой
-        </label>
+          <label htmlFor='color0'>Любой</label>
+        </div>
+
         {colors.map((color, index) => {
           return (
-            <label key={index}>
+            <div className={styles.colorWrapper}>
               <input
-                type="radio"
-                value={color}
-                checked={color === currentColor}
-                onChange={onColorChange}
-              />{" "}
-              {color}
-            </label>
+                  id={`color${index+1}`}
+                  type="radio"
+                  value={color}
+                  checked={color === currentColor}
+                  onChange={onColorChange}
+                />
+              <label key={index} htmlFor={`color${index+1}`}>
+                {" "}
+                {color}
+              </label>
+            </div>
           );
         })}
+        </div>
       </div>
-      <div className={styles.dates}>
-        <span>Дата аренды</span>
-        <div>
+      <div className={cn(styles.additionalItem, styles.datePicker)}>
+        <span className={styles.additionalTitle}>Дата аренды</span>
+        <div className={styles.wrapdate}>
           <label>
-            <span>C</span>
+            <span className={styles.dateTitle}>C</span>
             <DatePicker
               placeholderText="Введите дату и время"
               locale="ru"
+              clearButtonClassName={styles.clearButton}
               selected={from}
               minDate={new Date()}
               maxDate={to ? to : addDays(new Date(), 30)}
@@ -139,12 +149,13 @@ const AdditionalStage = () => {
             />
           </label>
         </div>
-        <div>
+        <div className={styles.wrapdate}>
           <label>
-            <span>По</span>
+            <span className={styles.dateTitle}>По</span>
             <DatePicker
               placeholderText="Введите дату и время"
               locale="ru"
+              clearButtonClassName={styles.clearButton}
               selected={to}
               minDate={from ? from : new Date()}
               maxDate={from ? addDays(from, 30) : addDays(new Date(), 30)}
@@ -159,8 +170,8 @@ const AdditionalStage = () => {
           </label>
         </div>
       </div>
-      <div className={styles.rates}>
-        <span>Тариф</span>
+      <div className={styles.additionalItem}>
+        <span className={styles.additionalTitle}>Тариф</span>
         {rates.map((rate) => {
           return <label key={rate.id}>
           <input
@@ -172,13 +183,23 @@ const AdditionalStage = () => {
         </label>
         })}
       </div>
-      <div className={styles.options}>
-        <span>
-          Доп услуги
-        </span>
-        <label><input type="checkbox" checked={fulltank} onChange={onFulltankChange} /> Полный бак, 500р</label>
-        <label><input type="checkbox" checked={babySeat} onChange={onBabySeatChange} /> Детское кресло, 200р</label>
-        <label><input type="checkbox" checked={rightHandDrive} onChange={onRigthHandDriveChange} /> Правый руль, 1600р</label>
+      <div className={cn(styles.additionalItem, styles.qqqoptions)}>
+        <span className={styles.additionalTitle}>Доп услуги</span>
+
+        <div className={styles.wrapperchecedprice}>
+          <input id='type1' type="checkbox" checked={fulltank} onChange={onFulltankChange} />
+          <label htmlFor='type1'> Полный бак, 500р</label>
+        </div>
+
+        <div className={styles.wrapperchecedprice}>
+          <input id='type2' type="checkbox" checked={babySeat} onChange={onBabySeatChange} />
+          <label htmlFor='type2'> Детское кресло, 200р</label>
+        </div>
+
+        <div className={styles.wrapperchecedprice}>
+          <input id='type3' type="checkbox" checked={rightHandDrive} onChange={onRigthHandDriveChange} />
+          <label htmlFor='type3'> Правый руль, 1600р</label>
+        </div>
       </div>
     </div>
   );
