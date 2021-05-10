@@ -10,10 +10,10 @@ import {
 } from "./actionTypes";
 
 const initialState = {
-  color: "",
+  color: null,
   from: null,
   to: null,
-  rate: "",
+  rate: '',
   options: {
     fulltank: false,
     babySeat: false,

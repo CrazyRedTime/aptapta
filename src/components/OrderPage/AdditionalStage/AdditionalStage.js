@@ -1,6 +1,14 @@
 import { useDispatch, useSelector } from "react-redux";
 import { getCurrentCarColors } from "../../../redux/cars/selectors";
-import { setBabySeat, setColor, setFrom, setFulltank, setRate, setRightHandDrive, setTo } from "../../../redux/details/details";
+import {
+  setBabySeat,
+  setColor,
+  setFrom,
+  setFulltank,
+  setRate,
+  setRightHandDrive,
+  setTo,
+} from "../../../redux/details/details";
 import {
   getCurrentColor,
   getFromDate,
@@ -8,13 +16,13 @@ import {
   getCurrentRate,
   getFullTank,
   getBabySeat,
-  getRigthHandDrive
+  getRigthHandDrive,
 } from "../../../redux/details/selectors";
 import DatePicker, { registerLocale } from "react-datepicker";
 import { addDays, addMinutes } from "date-fns";
 import ru from "date-fns/locale/ru";
 import { useEffect } from "react";
-import cn from 'classnames';
+import cn from "classnames";
 
 import "react-datepicker/dist/react-datepicker.css";
 import styles from "./AdditionalStage.module.scss";
@@ -61,15 +69,15 @@ const AdditionalStage = () => {
   };
 
   const onFulltankChange = () => {
-    dispatch(setFulltank(!fulltank))
+    dispatch(setFulltank(!fulltank));
   };
 
   const onBabySeatChange = () => {
-    dispatch(setBabySeat(!babySeat))
+    dispatch(setBabySeat(!babySeat));
   };
 
   const onRigthHandDriveChange = () => {
-    dispatch(setRightHandDrive(!rightHandDrive))
+    dispatch(setRightHandDrive(!rightHandDrive));
   };
 
   const filterPassedTime = (time) => {
@@ -94,34 +102,34 @@ const AdditionalStage = () => {
       <div className={cn(styles.additionalItem, styles.radio)}>
         <span className={styles.additionalTitle}>Цвет</span>
         <div className={styles.colorsContainer}>
-        <div className={styles.colorWrapper}>
-          <input
-            id="color0"
-            type="radio"
-            value=""
-            checked={currentColor === ""}
-            onChange={onColorChange}
-          />{" "}
-          <label htmlFor='color0'>Любой</label>
-        </div>
+          <div className={styles.colorWrapper}>
+            <input
+              id="color0"
+              type="radio"
+              value="любой"
+              checked={currentColor === "любой"}
+              onChange={onColorChange}
+            />{" "}
+            <label htmlFor="color0">любой</label>
+          </div>
 
-        {colors.map((color, index) => {
-          return (
-            <div className={styles.colorWrapper}>
-              <input
-                  id={`color${index+1}`}
+          {colors.map((color, index) => {
+            return (
+              <div className={styles.colorWrapper} key={index}>
+                <input
+                  id={`color${index + 1}`}
                   type="radio"
                   value={color}
                   checked={color === currentColor}
                   onChange={onColorChange}
                 />
-              <label key={index} htmlFor={`color${index+1}`}>
-                {" "}
-                {color}
-              </label>
-            </div>
-          );
-        })}
+                <label htmlFor={`color${index + 1}`}>
+                  {" "}
+                  {color}
+                </label>
+              </div>
+            );
+          })}
         </div>
       </div>
       <div className={cn(styles.additionalItem, styles.datePicker)}>
@@ -170,35 +178,58 @@ const AdditionalStage = () => {
           </label>
         </div>
       </div>
-      <div className={styles.additionalItem}>
+      <div className={cn(styles.additionalItem, styles.radio)}>
         <span className={styles.additionalTitle}>Тариф</span>
-        {rates.map((rate) => {
-          return <label key={rate.id}>
-          <input
-            type="radio"
-            checked={currentRate.id === rate.id}
-            onChange={() => onRateChange(rate)}
-          />{" "}
-          {`${rate.rateTypeId.name}, ${rate.price}₽/${rate.rateTypeId.unit}`}
-        </label>
-        })}
+        <div className={styles.ratesContainer}>
+          {rates.map((rate) => {
+            return (
+              <div className={styles.raterWrapper} key={rate.id}>
+                <input
+                  id={rate.id}
+                  type="radio"
+                  checked={currentRate.id === rate.id}
+                  onChange={() => onRateChange(rate)}
+                />
+                <label htmlFor={rate.id}>
+                  {" "}
+                  {`${rate.rateTypeId.name}, ${rate.price}₽/${rate.rateTypeId.unit}`}
+                </label>
+              </div>
+            );
+          })}
+        </div>
       </div>
-      <div className={cn(styles.additionalItem, styles.qqqoptions)}>
+      <div className={cn(styles.additionalItem, styles.options)}>
         <span className={styles.additionalTitle}>Доп услуги</span>
 
         <div className={styles.wrapperchecedprice}>
-          <input id='type1' type="checkbox" checked={fulltank} onChange={onFulltankChange} />
-          <label htmlFor='type1'> Полный бак, 500р</label>
+          <input
+            id="type1"
+            type="checkbox"
+            checked={fulltank}
+            onChange={onFulltankChange}
+          />
+          <label htmlFor="type1"> Полный бак, 500р</label>
         </div>
 
         <div className={styles.wrapperchecedprice}>
-          <input id='type2' type="checkbox" checked={babySeat} onChange={onBabySeatChange} />
-          <label htmlFor='type2'> Детское кресло, 200р</label>
+          <input
+            id="type2"
+            type="checkbox"
+            checked={babySeat}
+            onChange={onBabySeatChange}
+          />
+          <label htmlFor="type2"> Детское кресло, 200р</label>
         </div>
 
         <div className={styles.wrapperchecedprice}>
-          <input id='type3' type="checkbox" checked={rightHandDrive} onChange={onRigthHandDriveChange} />
-          <label htmlFor='type3'> Правый руль, 1600р</label>
+          <input
+            id="type3"
+            type="checkbox"
+            checked={rightHandDrive}
+            onChange={onRigthHandDriveChange}
+          />
+          <label htmlFor="type3"> Правый руль, 1600р</label>
         </div>
       </div>
     </div>

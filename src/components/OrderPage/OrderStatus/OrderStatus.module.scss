@@ -62,6 +62,10 @@
     }
 }
 
+.capitalize {
+  text-transform: capitalize;
+}
+
 .chooseModelButton {
     background: linear-gradient(90deg, hsla(148, 87%, 41%, 1) 2.61%, hsla(158, 96%, 32%, 1) 112.6%);
     background-blend-mode: darken;
