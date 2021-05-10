@@ -1,24 +1,24 @@
 {
   "files": {
-    "main.css": "/aptapta/static/css/main.c97ee102.chunk.css",
-    "main.js": "/aptapta/static/js/main.10597f45.chunk.js",
-    "main.js.map": "/aptapta/static/js/main.10597f45.chunk.js.map",
+    "main.css": "/aptapta/static/css/main.975adcb1.chunk.css",
+    "main.js": "/aptapta/static/js/main.df907c9e.chunk.js",
+    "main.js.map": "/aptapta/static/js/main.df907c9e.chunk.js.map",
     "runtime-main.js": "/aptapta/static/js/runtime-main.746dd845.js",
     "runtime-main.js.map": "/aptapta/static/js/runtime-main.746dd845.js.map",
     "static/css/2.d22f252f.chunk.css": "/aptapta/static/css/2.d22f252f.chunk.css",
-    "static/js/2.f395630e.chunk.js": "/aptapta/static/js/2.f395630e.chunk.js",
-    "static/js/2.f395630e.chunk.js.map": "/aptapta/static/js/2.f395630e.chunk.js.map",
+    "static/js/2.74b84e8e.chunk.js": "/aptapta/static/js/2.74b84e8e.chunk.js",
+    "static/js/2.74b84e8e.chunk.js.map": "/aptapta/static/js/2.74b84e8e.chunk.js.map",
     "index.html": "/aptapta/index.html",
     "static/css/2.d22f252f.chunk.css.map": "/aptapta/static/css/2.d22f252f.chunk.css.map",
-    "static/css/main.c97ee102.chunk.css.map": "/aptapta/static/css/main.c97ee102.chunk.css.map",
-    "static/js/2.f395630e.chunk.js.LICENSE.txt": "/aptapta/static/js/2.f395630e.chunk.js.LICENSE.txt",
+    "static/css/main.975adcb1.chunk.css.map": "/aptapta/static/css/main.975adcb1.chunk.css.map",
+    "static/js/2.74b84e8e.chunk.js.LICENSE.txt": "/aptapta/static/js/2.74b84e8e.chunk.js.LICENSE.txt",
     "static/media/OrderPageNav.module.scss": "/aptapta/static/media/listItem.ce81e742.svg"
   },
   "entrypoints": [
     "static/js/runtime-main.746dd845.js",
     "static/css/2.d22f252f.chunk.css",
-    "static/js/2.f395630e.chunk.js",
-    "static/css/main.c97ee102.chunk.css",
-    "static/js/main.10597f45.chunk.js"
+    "static/js/2.74b84e8e.chunk.js",
+    "static/css/main.975adcb1.chunk.css",
+    "static/js/main.df907c9e.chunk.js"
   ]
 }
