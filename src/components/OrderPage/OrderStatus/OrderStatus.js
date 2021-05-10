@@ -35,15 +35,15 @@ const OrderStatus = ({ currentStage, setCurrentStage }) => {
 
   const datesDifference = () => {
     if (to && from && to > from) {
-      const diff = to - from;
+      let diff = to - from;
       const min = 60000;
       const hour = min * 60;
       const day = hour * 24;
       const days = Math.floor(diff / day);
-      // diff -= days * day;
-      const hours = Math.floor((diff - days * day) / hour);
-      // diff -= hours * hour;
-      const minutes = Math.floor((diff - (days * day + hours * hour)) / min);
+      diff -= days * day;
+      const hours = Math.floor(diff / hour);
+      diff -= hours * hour;
+      const minutes = Math.ceil(diff  / min);
       return `${days >= 1 ? `${days}д` : ""}${hours >= 1 ? `${hours}ч` : ""}${
         minutes >= 1 ? `${minutes}мин` : ""
       }`;
@@ -141,7 +141,7 @@ const OrderStatus = ({ currentStage, setCurrentStage }) => {
           <span className={styles.pointTitle}>Тариф</span>
           <span className={styles.dots}></span>
           <div className={styles.point}>
-            <span >{currentRate.rateTypeId.name}</span>
+            <span>{currentRate.rateTypeId.name}</span>
           </div>
         </div>
       ) : null}
