@@ -8,6 +8,7 @@ import MapStage from "./MapStage/MapStage";
 import ChoosingCarStage from "./ChoosingCarStage/ChoosingCarStage";
 import AdditionalStage from "./AdditionalStage/AdditionalStage";
 import OrderStatus from "./OrderStatus/OrderStatus";
+import FinalStage from "./FinalStage/FinalStage";
 
 const OrderPage = () => {
   const [currentStage, setCurrentStage] = useState(1);
@@ -29,6 +30,7 @@ const OrderPage = () => {
             {currentStage === 1 && <MapStage />}
             {currentStage === 2 && <ChoosingCarStage />}
             {currentStage === 3 && <AdditionalStage />}
+            {currentStage === 4 && <FinalStage />}
           </div>
           <OrderStatus currentStage={currentStage} setCurrentStage={setCurrentStage} />
         </div>

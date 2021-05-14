@@ -2,10 +2,12 @@ import {
   COMPLETE_MAP_STAGE,
   COMPLETE_CAR_STAGE,
   COMPLETE_ADDITIONAL_STAGE,
+  UNCOMPLETE_ADDITIONAL_STAGE,
   SET_CURRENT_ADDRESS,
   SET_CURRENT_CITY,
   SET_CURRENT_CAR,
   SET_CURRENT_CATEGORY,
+  SET_CURRENT_PRICE
 } from "./actionTypes";
 
 const initialState = {
@@ -13,6 +15,7 @@ const initialState = {
   currentCity: null,
   currentCar: null,
   currentCategory: "",
+  currentPrice: null,
   mapStageIsCompleted: false,
   carStageIsCompleted: false,
   additionalStageIsCompleted: false,
@@ -49,6 +52,12 @@ const order = (state = initialState, { type, payload }) => {
         currentCategory: payload,
       };
 
+    case SET_CURRENT_PRICE:
+      return {
+        ...state,
+        currentPrice: payload
+      };
+ 
     case COMPLETE_MAP_STAGE:
       return {
         ...state,
@@ -65,6 +74,12 @@ const order = (state = initialState, { type, payload }) => {
       return {
         ...state,
         additionalStageIsCompleted: true
+      }
+
+    case UNCOMPLETE_ADDITIONAL_STAGE:
+      return {
+        ...state,
+        additionalStageIsCompleted: false
       }
 
     default:
@@ -100,6 +115,13 @@ export const setCurrentCategory = (category) => (dispatch) => {
   });
 };
 
+export const setCurrentPrice = (price) => (dispatch) => {
+  dispatch({
+    type: SET_CURRENT_PRICE,
+    payload: price,
+  });
+};
+
 export const completeMapStage = () => (dispatch) => {
   dispatch({
     type: COMPLETE_MAP_STAGE,
@@ -115,6 +137,12 @@ export const completeCarStage = () => (dispatch) => {
 export const completeAdditionalStage = () => (dispatch) => {
   dispatch({
     type: COMPLETE_ADDITIONAL_STAGE,
+  });
+};
+
+export const uncompleteAdditionalStage = () => (dispatch) => {
+  dispatch({
+    type: UNCOMPLETE_ADDITIONAL_STAGE,
   });
 };
 

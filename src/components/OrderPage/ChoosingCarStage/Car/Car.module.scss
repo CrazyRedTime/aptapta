@@ -1,5 +1,5 @@
 .car {
-  width: 368px;
+  width: 50%;
   height: 224px;
   border: 1px solid #eee;
   padding: 16px;
@@ -46,4 +46,18 @@
 .imageContainer {
   display: flex;
   justify-content: flex-end;
+}
+
+@media (max-width: 768px) {
+  .car {
+    height: 160px;
+  }
+  .name {
+    font-size: 14px;
+    line-height: 16px;
+  }
+  .price {
+    font-size: 11px;
+    line-height: 13px;
+  }
 }

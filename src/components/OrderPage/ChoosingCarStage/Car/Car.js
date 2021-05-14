@@ -7,16 +7,11 @@ import {
 import styles from "./Car.module.scss";
 import cn from "classnames";
 import { clearDetails } from "../../../../redux/details/details";
+import normalizeImageLink from "../../../../helpers/normalizeImageLink";
 
 const Car = ({ car }) => {
-  const letMeMakeNormalLinkForYou = (retardetLink) => {
-    if (retardetLink.match("base64")) {
-      return retardetLink;
-    }
-    return `https://api-factory.simbirsoft1.com${retardetLink}`;
-  };
 
-  const normalLink = letMeMakeNormalLinkForYou(car.thumbnail.path);
+  const normalLink = normalizeImageLink(car.thumbnail.path);
 
   const carStageIsCompleted = useSelector(getCarStageIsCompleted);
 

@@ -27,7 +27,7 @@ export const getCarStageIsCompleted = (state) => {
 };
 
 export const getAdditionalStageISCompleted = (state) => {
-  return state.order.additionalStageISCompleted;
+  return state.order.additionalStageIsCompleted;
 };
 
 export const getFinalStageIsCompleted = (state) => {
@@ -38,16 +38,43 @@ export const getCurrentCarId = (state) => {
   if (state.order.currentCar) {
     return state.order.currentCar.id;
   }
-    return null;
+  return null;
 };
 
 export const getCurrentCarName = (state) => {
   if (state.order.currentCar) {
     return state.order.currentCar.name;
   }
-    return null;
+  return null;
+};
+
+export const getCurrentCarNumber = (state) => {
+  if (state.order.currentCar) {
+    return state.order.currentCar.number;
+  }
+  return null;
+};
+
+export const getCurrentCarImageLink = (state) => {
+  if (state.order.currentCar) {
+    return state.order.currentCar.thumbnail.path;
+  }
+  return null;
 };
 
 export const getCurrentCategory = (state) => {
   return state.order.currentCategory;
+};
+
+export const getCurrentCarPrices = (state) => {
+  if (state.order.currentCar) {
+    const minPrice = state.order.currentCar.priceMin;
+    const maxPrice = state.order.currentCar.priceMax;
+    return `от ${minPrice} до ${maxPrice} ₽`;
+  }
+  return null;
+};
+
+export const getCurrentPrice = (state) => {
+  return state.order.currentPrice;
 };

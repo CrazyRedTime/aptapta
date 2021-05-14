@@ -23,11 +23,14 @@ import { addDays, addMinutes } from "date-fns";
 import ru from "date-fns/locale/ru";
 import { useEffect } from "react";
 import cn from "classnames";
+import api from '../../../api/api'
 
 import "react-datepicker/dist/react-datepicker.css";
 import styles from "./AdditionalStage.module.scss";
 import { fetchRates } from "../../../redux/rates/rates";
 import { getRatesWithMemo } from "../../../redux/rates/selectors";
+import { getCurrentPrice } from "../../../redux/order/selectors";
+import { uncompleteAdditionalStage } from "../../../redux/order/order";
 
 const AdditionalStage = () => {
   const dispatch = useDispatch();
@@ -41,10 +44,21 @@ const AdditionalStage = () => {
   const fulltank = useSelector(getFullTank);
   const babySeat = useSelector(getBabySeat);
   const rightHandDrive = useSelector(getRigthHandDrive);
+  const currentPrice = useSelector(getCurrentPrice);
+
+  useEffect(() => {
+    if (!currentPrice) {
+      dispatch(uncompleteAdditionalStage());
+    }
+  }, [currentPrice, dispatch]);
 
   useEffect(() => {
     registerLocale("ru", ru);
   }, []);
+
+  useEffect(() => {
+    api.getOrderFromApi();
+  }, [])
 
   useEffect(() => {
     if (!rates.length) {
@@ -69,7 +83,7 @@ const AdditionalStage = () => {
   };
 
   const onFulltankChange = () => {
-    dispatch(setFulltank(!fulltank));
+    dispatch(setFulltank(!fulltank))
   };
 
   const onBabySeatChange = () => {

@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   getBabySeat,
@@ -12,10 +13,13 @@ import {
   completeAdditionalStage,
   completeCarStage,
   completeMapStage,
+  setCurrentPrice,
 } from "../../../redux/order/order";
 import {
   getCurrentAddressWithMemo,
   getCurrentCarName,
+  getCurrentCarPrices,
+  getCurrentPrice,
 } from "../../../redux/order/selectors";
 import styles from "./OrderStatus.module.scss";
 
@@ -23,6 +27,7 @@ const OrderStatus = ({ currentStage, setCurrentStage }) => {
   const currentAddress = useSelector(getCurrentAddressWithMemo);
 
   const currentCarName = useSelector(getCurrentCarName);
+  const currentCarPrices = useSelector(getCurrentCarPrices);
   const currentColor = useSelector(getCurrentColor);
   const from = useSelector(getFromDate);
   const to = useSelector(getToDate);
@@ -30,26 +35,60 @@ const OrderStatus = ({ currentStage, setCurrentStage }) => {
   const fulltank = useSelector(getFullTank);
   const babySeat = useSelector(getBabySeat);
   const rightHandDrive = useSelector(getRigthHandDrive);
+  const currentPrice = useSelector(getCurrentPrice);
+
+  const [datesInterval, setDatesInterval] = useState(null);
+  const [intervalString, setIntervalString] = useState(null);
 
   const dispatch = useDispatch();
 
-  const datesDifference = () => {
+  const min = 60000;
+  const hour = min * 60;
+  const day = hour * 24;
+  const week = day * 7;
+
+  useEffect(() => {
+    const datesDifference = () => {
+      if (datesInterval) {
+        let diff = datesInterval;
+        const days = Math.floor(diff / day);
+        diff -= days * day;
+        const hours = Math.floor(diff / hour);
+        diff -= hours * hour;
+        const minutes = Math.ceil(diff / min);
+        return `${days >= 1 ? `${days}д` : ""}${hours >= 1 ? `${hours}ч` : ""}${
+          minutes >= 1 ? `${minutes}мин` : ""
+        }`;
+      }
+      return null;
+    };
+    const newIntervalString = datesDifference();
+    setIntervalString(newIntervalString);
+  }, [datesInterval, day, hour])
+
+  useEffect(() => {
     if (to && from && to > from) {
-      let diff = to - from;
-      const min = 60000;
-      const hour = min * 60;
-      const day = hour * 24;
-      const days = Math.floor(diff / day);
-      diff -= days * day;
-      const hours = Math.floor(diff / hour);
-      diff -= hours * hour;
-      const minutes = Math.ceil(diff  / min);
-      return `${days >= 1 ? `${days}д` : ""}${hours >= 1 ? `${hours}ч` : ""}${
-        minutes >= 1 ? `${minutes}мин` : ""
-      }`;
+      setDatesInterval((Math.round((to - from) / 10000)) * 10000);
+    } else {
+      setDatesInterval(null)
     }
-    return null;
-  };
+  }, [from, to]);
+
+  useEffect(() => {
+    if (currentRate && datesInterval) {
+      let price = null;
+      if (currentRate.rateTypeId.id === "5e26a07f099b810b946c5d82") {
+        price = datesInterval / min * currentRate.price;
+      } else if (currentRate.rateTypeId.id === "5e26a082099b810b946c5d83") {
+        price = Math.ceil(datesInterval / day) * currentRate.price;
+      } else if (currentRate.rateTypeId.id === "5f622f029d3a610b850fd820") {
+        price = Math.ceil(datesInterval / week) * currentRate.price;
+      }
+      dispatch(setCurrentPrice(price + fulltank * 500 + babySeat * 200 + rightHandDrive * 1600));
+    } else {
+      dispatch(setCurrentPrice(null));
+    }
+  }, [currentRate, datesInterval, day, week, fulltank, babySeat, rightHandDrive, dispatch])
 
   const renderButton = () => {
     if (currentStage === 1) {
@@ -82,10 +121,21 @@ const OrderStatus = ({ currentStage, setCurrentStage }) => {
       return (
         <button
           className={styles.chooseModelButton}
-          disabled={!(from && to && currentRate)}
+          disabled={!(from && to && currentRate && currentColor)}
           onClick={() => {
             setCurrentStage(4);
             dispatch(completeAdditionalStage());
+          }}
+        >
+          Итого
+        </button>
+      );
+    } else if (currentStage === 4) {
+      return (
+        <button
+          className={styles.chooseModelButton}
+          onClick={() => {
+            console.log('подтверждение заказа')
           }}
         >
           Итого
@@ -127,12 +177,12 @@ const OrderStatus = ({ currentStage, setCurrentStage }) => {
           </div>
         </div>
       ) : null}
-      {datesDifference() ? (
+      {intervalString ? (
         <div className={styles.orderPoint}>
           <span className={styles.pointTitle}>Длительность аренды</span>
           <span className={styles.dots}></span>
           <div className={styles.point}>
-            <span>{datesDifference()}</span>
+            <span>{intervalString}</span>
           </div>
         </div>
       ) : null}
@@ -172,6 +222,12 @@ const OrderStatus = ({ currentStage, setCurrentStage }) => {
           </div>
         </div>
       ) : null}
+      {currentCarPrices || currentPrice ? (
+        <div className={styles.totalPriceContainer}>
+          <span className={styles.yourOrder}>{`Цена: ${currentPrice ? `${currentPrice} ₽` : `${currentCarPrices}`}`}</span>
+        </div>
+      )
+       : null}
       {renderButton()}
     </div>
   );

@@ -50,3 +50,15 @@
 .active {
     color: #0EC261!important;
 }
+
+@media (max-width: 768px) {
+  .nav {
+    display: flex;
+    flex-direction: column;
+    li {
+        a {
+        }
+        &:before {
+            display: none;
+        }
+}}}

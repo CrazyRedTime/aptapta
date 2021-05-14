@@ -1,0 +1,56 @@
+.carImage {
+  width: 256px;
+  height: 116px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: right;
+}
+
+.imageContainer {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.infoContainer {
+  display: flex;
+  flex-direction: column;
+}
+
+.resultContainer {
+  display: flex;
+  justify-content: space-between;
+  margin-right: 192px;
+}
+
+.carName {
+  font-size: 18px;
+  line-height: 21px;
+  color: #121212;
+  margin-bottom: 8px;
+}
+
+.carNumber {
+  font-size: 14px;
+  line-height: 16px;
+  color: #121212;
+  border: 1px solid #999;
+  padding: 4px 8px;
+  border-radius: 4px;
+  margin-bottom: 8px;
+}
+
+.title {
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 16px;
+}
+
+.value {
+  font-weight: 300;
+  font-size: 14px;
+  line-height: 16px;
+}
+
+.optionContaner {
+  margin-bottom: 8px;
+}

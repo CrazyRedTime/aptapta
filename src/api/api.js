@@ -38,11 +38,17 @@ const getRatesFromApi = async () => {
   return response.data.data;
 };
 
+const getOrderFromApi = async () => {
+  const response = await template.get(`/db/orderStatus`);
+  console.log(response);
+};
+
 const api = {
   getPointsFromApi,
   getMarkerForMap,
   getCarsFromApi,
-  getRatesFromApi
+  getRatesFromApi,
+  getOrderFromApi
 }
 
 export default api;
