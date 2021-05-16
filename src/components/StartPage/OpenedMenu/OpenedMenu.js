@@ -1,5 +1,6 @@
 import styles from "./OpenedMenu.module.scss";
 import { ReactSVG } from "react-svg";
+import { Link } from "react-router-dom";
 
 const OpenedMenu = () => {
   return (
@@ -7,10 +8,10 @@ const OpenedMenu = () => {
       <div className={styles.menuContainer}>
         <div className={styles.centerContent}>
           <ul className={styles.menu}>
-            <li><a href="/#">ПАРКОВКА</a></li>
-            <li><a href="/#">СТРАХОВКА</a></li>
-            <li><a href="/#">БЕНЗИН</a></li>
-            <li><a href="/#">ОБСЛУЖИВАНИЕ</a></li>
+            <li><Link to={"#"}>ПАРКОВКА</Link></li>
+            <li><Link to={"#"}>СТРАХОВКА</Link></li>
+            <li><Link to={"#"}>БЕНЗИН</Link></li>
+            <li><Link to={"#"}>ОБСЛУЖИВАНИЕ</Link></li>
           </ul>
           <ul className={styles.social}>
             <li>

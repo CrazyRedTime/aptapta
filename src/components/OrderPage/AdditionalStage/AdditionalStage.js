@@ -204,7 +204,7 @@ const AdditionalStage = () => {
                   checked={currentRate.id === rate.id}
                   onChange={() => onRateChange(rate)}
                 />
-                <label htmlFor={rate.id}>
+                <label htmlFor={rate.id} className={styles.labelInline}>
                   {" "}
                   {`${rate.rateTypeId.name}, ${rate.price}₽/${rate.rateTypeId.unit}`}
                 </label>
@@ -223,7 +223,7 @@ const AdditionalStage = () => {
             checked={fulltank}
             onChange={onFulltankChange}
           />
-          <label htmlFor="type1"> Полный бак, 500р</label>
+          <label htmlFor="type1" className={styles.labelInline}> Полный бак, 500р</label>
         </div>
 
         <div className={styles.wrapperchecedprice}>
@@ -233,7 +233,7 @@ const AdditionalStage = () => {
             checked={babySeat}
             onChange={onBabySeatChange}
           />
-          <label htmlFor="type2"> Детское кресло, 200р</label>
+          <label htmlFor="type2" className={styles.labelInline}> Детское кресло, 200р</label>
         </div>
 
         <div className={styles.wrapperchecedprice}>
@@ -243,7 +243,7 @@ const AdditionalStage = () => {
             checked={rightHandDrive}
             onChange={onRigthHandDriveChange}
           />
-          <label htmlFor="type3"> Правый руль, 1600р</label>
+          <label htmlFor="type3" className={styles.labelInline}> Правый руль, 1600р</label>
         </div>
       </div>
     </div>

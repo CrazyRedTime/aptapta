@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import cn from 'classnames';
 import {
   getBabySeat,
   getCurrentColor,
@@ -22,6 +23,7 @@ import {
   getCurrentPrice,
 } from "../../../redux/order/selectors";
 import styles from "./OrderStatus.module.scss";
+import ConfirmationStage from "../ConfirmationStage/ConfirmationStage";
 
 const OrderStatus = ({ currentStage, setCurrentStage }) => {
   const currentAddress = useSelector(getCurrentAddressWithMemo);
@@ -39,6 +41,8 @@ const OrderStatus = ({ currentStage, setCurrentStage }) => {
 
   const [datesInterval, setDatesInterval] = useState(null);
   const [intervalString, setIntervalString] = useState(null);
+  const [showDetails, setShowDetails] = useState(false);
+  const [confirmation, setConfirmation] = useState(false);
 
   const dispatch = useDispatch();
 
@@ -136,9 +140,10 @@ const OrderStatus = ({ currentStage, setCurrentStage }) => {
           className={styles.chooseModelButton}
           onClick={() => {
             console.log('подтверждение заказа')
+            setConfirmation(true);
           }}
         >
-          Итого
+          Заказать
         </button>
       );
     }
@@ -146,6 +151,8 @@ const OrderStatus = ({ currentStage, setCurrentStage }) => {
 
   return (
     <div className={styles.orderStatus}>
+      <button disabled={!currentAddress} className={styles.detailsButton} onClick={() => setShowDetails(!showDetails)}>{showDetails ? 'Скрыть детали заказа' : 'Показать детали заказа'}</button>
+      <div className={cn({[styles.detailsContainer] : !showDetails})}>
       <div className={styles.yourOrderContainer}>
         <span className={styles.yourOrder}>Ваш заказ:</span>
       </div>
@@ -228,7 +235,9 @@ const OrderStatus = ({ currentStage, setCurrentStage }) => {
         </div>
       )
        : null}
+      </div>
       {renderButton()}
+      {confirmation ? <ConfirmationStage setConfirmation={setConfirmation} /> : null}
     </div>
   );
 };
