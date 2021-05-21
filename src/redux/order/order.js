@@ -7,8 +7,12 @@ import {
   SET_CURRENT_CITY,
   SET_CURRENT_CAR,
   SET_CURRENT_CATEGORY,
-  SET_CURRENT_PRICE
+  SET_CURRENT_PRICE,
+  FETCH_ORDER_STATUS_ID_START,
+  FETCH_ORDER_STATUS_ID_SUCCESS,
+  FETCH_ORDER_STATUS_ID_FAILURE,
 } from "./actionTypes";
+import api from "../../api/api";
 
 const initialState = {
   currentAddress: null,
@@ -20,6 +24,7 @@ const initialState = {
   carStageIsCompleted: false,
   additionalStageIsCompleted: false,
   finalStageIsCompleted: false,
+  orderStatusId: null,
 };
 
 const order = (state = initialState, { type, payload }) => {
@@ -55,9 +60,9 @@ const order = (state = initialState, { type, payload }) => {
     case SET_CURRENT_PRICE:
       return {
         ...state,
-        currentPrice: payload
+        currentPrice: payload,
       };
- 
+
     case COMPLETE_MAP_STAGE:
       return {
         ...state,
@@ -73,14 +78,20 @@ const order = (state = initialState, { type, payload }) => {
     case COMPLETE_ADDITIONAL_STAGE:
       return {
         ...state,
-        additionalStageIsCompleted: true
-      }
+        additionalStageIsCompleted: true,
+      };
 
     case UNCOMPLETE_ADDITIONAL_STAGE:
       return {
         ...state,
-        additionalStageIsCompleted: false
-      }
+        additionalStageIsCompleted: false,
+      };
+
+    case FETCH_ORDER_STATUS_ID_SUCCESS:
+      return {
+        ...state,
+        orderStatusId: payload,
+      };
 
     default:
       return state;
@@ -144,6 +155,25 @@ export const uncompleteAdditionalStage = () => (dispatch) => {
   dispatch({
     type: UNCOMPLETE_ADDITIONAL_STAGE,
   });
+};
+
+export const fetchOrderStatusId = (id) => async (dispatch) => {
+  dispatch({
+    type: FETCH_ORDER_STATUS_ID_START,
+  });
+  try {
+    const id = await api.getOrderStatusIdFromApi();
+    dispatch({
+      type: FETCH_ORDER_STATUS_ID_SUCCESS,
+      payload: id,
+    });
+  } catch (error) {
+    dispatch({
+      type: FETCH_ORDER_STATUS_ID_FAILURE,
+      payload: error,
+      error: true,
+    });
+  }
 };
 
 export default order;

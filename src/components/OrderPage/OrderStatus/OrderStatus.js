@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import cn from 'classnames';
+import { useHistory } from "react-router";
 import {
   getBabySeat,
   getCurrentColor,
@@ -14,6 +15,7 @@ import {
   completeAdditionalStage,
   completeCarStage,
   completeMapStage,
+  fetchOrderStatusId,
   setCurrentPrice,
 } from "../../../redux/order/order";
 import {
@@ -21,13 +23,19 @@ import {
   getCurrentCarName,
   getCurrentCarPrices,
   getCurrentPrice,
+  getOrderStatusIdWithMemo,
 } from "../../../redux/order/selectors";
 import styles from "./OrderStatus.module.scss";
 import ConfirmationStage from "../ConfirmationStage/ConfirmationStage";
+import { getPlacedOrderWithMemo } from "../../../redux/placedOrder/selectors";
+import { clearPlacedOrder } from "../../../redux/placedOrder/placedOrder";
 
 const OrderStatus = ({ currentStage, setCurrentStage }) => {
-  const currentAddress = useSelector(getCurrentAddressWithMemo);
 
+
+  let history = useHistory();
+
+  const currentAddress = useSelector(getCurrentAddressWithMemo);
   const currentCarName = useSelector(getCurrentCarName);
   const currentCarPrices = useSelector(getCurrentCarPrices);
   const currentColor = useSelector(getCurrentColor);
@@ -38,6 +46,9 @@ const OrderStatus = ({ currentStage, setCurrentStage }) => {
   const babySeat = useSelector(getBabySeat);
   const rightHandDrive = useSelector(getRigthHandDrive);
   const currentPrice = useSelector(getCurrentPrice);
+  const orderStatusId = useSelector(getOrderStatusIdWithMemo);
+
+  const {pointId, cityId, carId, color, dateFrom, dateTo, rateId, price, isFullTank, isNeedChildChair, isRightWheel} = useSelector(getPlacedOrderWithMemo);
 
   const [datesInterval, setDatesInterval] = useState(null);
   const [intervalString, setIntervalString] = useState(null);
@@ -50,6 +61,12 @@ const OrderStatus = ({ currentStage, setCurrentStage }) => {
   const hour = min * 60;
   const day = hour * 24;
   const week = day * 7;
+
+  useEffect(() => {
+    if (!orderStatusId) {
+      dispatch(fetchOrderStatusId())
+    }
+  }, [orderStatusId, dispatch])
 
   useEffect(() => {
     const datesDifference = () => {
@@ -71,12 +88,14 @@ const OrderStatus = ({ currentStage, setCurrentStage }) => {
   }, [datesInterval, day, hour])
 
   useEffect(() => {
-    if (to && from && to > from) {
+    if (dateFrom && dateTo) {
+      setDatesInterval((Math.round((dateTo - dateFrom) / 10000)) * 10000);
+    } else if (to && from && to > from) {
       setDatesInterval((Math.round((to - from) / 10000)) * 10000);
     } else {
       setDatesInterval(null)
     }
-  }, [from, to]);
+  }, [from, to, dateFrom, dateTo]);
 
   useEffect(() => {
     if (currentRate && datesInterval) {
@@ -135,11 +154,25 @@ const OrderStatus = ({ currentStage, setCurrentStage }) => {
         </button>
       );
     } else if (currentStage === 4) {
+      if (pointId) {
+        return (
+          <button
+            className={cn(styles.chooseModelButton, styles.cancelButton)}
+            onClick={() => {
+              console.log('fhg');
+              const location = history.location.pathname;
+              history.push(location);
+              dispatch(clearPlacedOrder());
+            }}
+          >
+            Отменить
+          </button>
+        );
+      }
       return (
         <button
           className={styles.chooseModelButton}
           onClick={() => {
-            console.log('подтверждение заказа')
             setConfirmation(true);
           }}
         >
@@ -151,36 +184,36 @@ const OrderStatus = ({ currentStage, setCurrentStage }) => {
 
   return (
     <div className={styles.orderStatus}>
-      <button disabled={!currentAddress} className={styles.detailsButton} onClick={() => setShowDetails(!showDetails)}>{showDetails ? 'Скрыть детали заказа' : 'Показать детали заказа'}</button>
+      <button disabled={!currentAddress && !pointId} className={styles.detailsButton} onClick={() => setShowDetails(!showDetails)}>{showDetails ? 'Скрыть детали заказа' : 'Показать детали заказа'}</button>
       <div className={cn({[styles.detailsContainer] : !showDetails})}>
       <div className={styles.yourOrderContainer}>
         <span className={styles.yourOrder}>Ваш заказ:</span>
       </div>
-      {currentAddress ? (
+      {pointId || currentAddress ? (
         <div className={styles.orderPoint}>
           <span className={styles.pointTitle}>Пункт выдачи</span>
           <span className={styles.dots}></span>
           <div className={styles.point}>
-            <span>{`${currentAddress.city.name},`}</span>
-            <span>{`${currentAddress.address}`}</span>
+            <span>{`${cityId ? cityId.name : currentAddress.city.name},`}</span>
+            <span>{`${pointId ? pointId.address: currentAddress.address}`}</span>
           </div>
         </div>
       ) : null}
-      {currentCarName ? (
+      {carId || currentCarName ? (
         <div className={styles.orderPoint}>
           <span className={styles.pointTitle}>Модель</span>
           <span className={styles.dots}></span>
           <div className={styles.point}>
-            <span>{currentCarName}</span>
+            <span>{carId ? carId.name : currentCarName}</span>
           </div>
         </div>
       ) : null}
-      {currentColor ? (
+      {color || currentColor ? (
         <div className={styles.orderPoint}>
           <span className={styles.pointTitle}>Цвет</span>
           <span className={styles.dots}></span>
           <div className={styles.point}>
-            <span className={styles.capitalize}>{currentColor}</span>
+            <span className={styles.capitalize}>{color? color : currentColor}</span>
           </div>
         </div>
       ) : null}
@@ -193,16 +226,16 @@ const OrderStatus = ({ currentStage, setCurrentStage }) => {
           </div>
         </div>
       ) : null}
-      {currentRate ? (
+      {rateId || currentRate ? (
         <div className={styles.orderPoint}>
           <span className={styles.pointTitle}>Тариф</span>
           <span className={styles.dots}></span>
           <div className={styles.point}>
-            <span>{currentRate.rateTypeId.name}</span>
+            <span>{rateId ? rateId.rateTypeId.name : currentRate.rateTypeId.name}</span>
           </div>
         </div>
       ) : null}
-      {fulltank ? (
+      {isFullTank || fulltank ? (
         <div className={styles.orderPoint}>
           <span className={styles.pointTitle}>Полный бак</span>
           <span className={styles.dots}></span>
@@ -211,7 +244,7 @@ const OrderStatus = ({ currentStage, setCurrentStage }) => {
           </div>
         </div>
       ) : null}
-      {babySeat ? (
+      {isNeedChildChair || babySeat ? (
         <div className={styles.orderPoint}>
           <span className={styles.pointTitle}>Детское кресло</span>
           <span className={styles.dots}></span>
@@ -220,7 +253,7 @@ const OrderStatus = ({ currentStage, setCurrentStage }) => {
           </div>
         </div>
       ) : null}
-      {rightHandDrive ? (
+      {isRightWheel || rightHandDrive ? (
         <div className={styles.orderPoint}>
           <span className={styles.pointTitle}>Правый руль</span>
           <span className={styles.dots}></span>
@@ -229,9 +262,9 @@ const OrderStatus = ({ currentStage, setCurrentStage }) => {
           </div>
         </div>
       ) : null}
-      {currentCarPrices || currentPrice ? (
+      {price || currentCarPrices || currentPrice ? (
         <div className={styles.totalPriceContainer}>
-          <span className={styles.yourOrder}>{`Цена: ${currentPrice ? `${currentPrice} ₽` : `${currentCarPrices}`}`}</span>
+          <span className={styles.yourOrder}>{`Цена: ${price ? `${price} ₽` : currentPrice ? `${currentPrice} ₽` : `${currentCarPrices}`}`}</span>
         </div>
       )
        : null}

@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import { fetchPoints, setCenter, setZoom } from "../../../redux/map/map";
-import { setCurrentAddress, setCurrentCar, setCurrentCity } from "../../../redux/order/order";
-import { getCarStageIsCompleted, getCurrentAddressWithMemo, getCurrentCityWithMemo, getMapStageIsCompleted } from "../../../redux/order/selectors";
+import { setCurrentAddress, setCurrentCar, setCurrentCity, uncompleteAdditionalStage } from "../../../redux/order/order";
+import { getAdditionalStageISCompleted, getCarStageIsCompleted, getCurrentAddressWithMemo, getCurrentCityWithMemo, getMapStageIsCompleted } from "../../../redux/order/selectors";
 import { getCenterWithMemo, getCitiesWithMemo, getMarkersWithMemo, getPointsAddress, getZoom } from "../../../redux/map/selectors";
 import MapForm from "./MapForm/MapForm";
 import OrderPageMap from "./OrderPageMap/OrderPageMap";
@@ -22,6 +22,7 @@ const MapStage = () => {
   const currentCity = useSelector(getCurrentCityWithMemo);
   const mapStageIsCompleted = useSelector(getMapStageIsCompleted);
   const carStageIsCompleted = useSelector(getCarStageIsCompleted);
+  const additionalStageIsCompleted = useSelector(getAdditionalStageISCompleted);
   const points = useSelector(getPointsAddress);
 
   useEffect(() => {
@@ -52,6 +53,9 @@ const MapStage = () => {
     }
     if (carStageIsCompleted) {
       dispatch(clearDetails())
+    }
+    if (additionalStageIsCompleted) {
+      dispatch(uncompleteAdditionalStage());
     }
   };
 

@@ -34,6 +34,15 @@ export const getFinalStageIsCompleted = (state) => {
   return state.order.finalStageIsCompleted;
 };
 
+const getCurrentCarFromState = (state) => {
+  return state.order.currentCar;
+};
+
+export const getCurrentCarWithMemo = createSelector(
+  getCurrentCarFromState,
+  (car) => car
+);
+
 export const getCurrentCarId = (state) => {
   if (state.order.currentCar) {
     return state.order.currentCar.id;
@@ -78,3 +87,29 @@ export const getCurrentCarPrices = (state) => {
 export const getCurrentPrice = (state) => {
   return state.order.currentPrice;
 };
+
+const getOrderStatusIdFromState = (state) => {
+  return state.order.orderStatusId;
+};
+
+export const getOrderStatusIdWithMemo = createSelector(
+  [getOrderStatusIdFromState],
+  (orderStatusId) => orderStatusId
+);
+
+export const getOrderForPosting = createSelector(
+  getOrderStatusIdWithMemo,
+  getCurrentCityWithMemo,
+  getCurrentAddressWithMemo,
+  getCurrentCarWithMemo,
+  getCurrentPrice,
+  (orderStatusId, cityId, pointId, carId, price) => {
+    return {
+      orderStatusId,
+      cityId,
+      pointId,
+      carId,
+      price
+    };
+  }
+);

@@ -2,7 +2,8 @@ import styles from "./OrderPageNav.module.scss";
 import { Link } from "react-router-dom";
 import cn from "classnames";
 import { useSelector } from "react-redux";
-import { getAdditionalStageISCompleted, getCarStageIsCompleted, getFinalStageIsCompleted, getMapStageIsCompleted } from "../../../redux/order/selectors";
+import { getAdditionalStageISCompleted, getCarStageIsCompleted, getMapStageIsCompleted } from "../../../redux/order/selectors";
+import { getPlacedOrderWithMemo } from "../../../redux/placedOrder/selectors";
 
 const OrderPageNav = ({
   currentStage,
@@ -12,7 +13,16 @@ const OrderPageNav = ({
   const mapStageIsCompleted = useSelector(getMapStageIsCompleted);
   const carStageIsCompleted = useSelector(getCarStageIsCompleted);
   const additionalStageIsCompleted = useSelector(getAdditionalStageISCompleted);
-  const finalStageIsCompleted = useSelector(getFinalStageIsCompleted);
+
+  const {id} = useSelector(getPlacedOrderWithMemo);
+
+  if (id) {
+    return (
+      <div className={styles.nav}>
+        <span className={styles.orderNumber}>{`Заказ номер ${id}`}</span>
+      </div>
+    )
+  }
 
   return (
     <ul className={styles.nav}>

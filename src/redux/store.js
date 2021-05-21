@@ -5,13 +5,15 @@ import order from "./order/order";
 import cars from "./cars/cars";
 import details from "./details/details";
 import rates from "./rates/rates";
+import placedOrder from "./placedOrder/placedOrder";
 
 const reducers = combineReducers({
   map,
   order,
   cars,
   details,
-  rates
+  rates,
+  placedOrder
 });
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;

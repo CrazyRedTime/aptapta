@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import OpenedMenu from "../StartPage/OpenedMenu/OpenedMenu";
 import StartPageMenu from "../StartPage/StartPageMenu/StartPageMenu";
 import styles from "./OrderPage.module.scss";
@@ -9,11 +9,29 @@ import ChoosingCarStage from "./ChoosingCarStage/ChoosingCarStage";
 import AdditionalStage from "./AdditionalStage/AdditionalStage";
 import OrderStatus from "./OrderStatus/OrderStatus";
 import FinalStage from "./FinalStage/FinalStage";
+import { useHistory } from "react-router";
+import queryString from 'query-string';
+import { useDispatch } from "react-redux";
+import { fetchPlacedOrder } from "../../redux/placedOrder/placedOrder";
 
 const OrderPage = () => {
   const [currentStage, setCurrentStage] = useState(1);
 
   const [menuIsOpen, setMenuIsOpen] = useState(false);
+
+  let history = useHistory();
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (history.location.search) {
+      const parsed = queryString.parse(history.location.search);
+      dispatch(fetchPlacedOrder(parsed.orderId));
+      setCurrentStage(4);
+    } else {
+      setCurrentStage(1)
+    }
+  }, [history.location.search, dispatch])
 
   return (
     <div className={styles.orderMain}>

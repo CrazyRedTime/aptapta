@@ -51,6 +51,14 @@
     color: #0EC261!important;
 }
 
+.orderNumber {
+  font-style: normal;
+  font-weight: bold;
+  font-size: 14px;
+  line-height: 16px;
+  color: #121212;
+}
+
 @media (max-width: 768px) {
   .nav {
     display: flex;

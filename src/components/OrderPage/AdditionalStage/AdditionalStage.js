@@ -23,7 +23,6 @@ import { addDays, addMinutes } from "date-fns";
 import ru from "date-fns/locale/ru";
 import { useEffect } from "react";
 import cn from "classnames";
-import api from '../../../api/api'
 
 import "react-datepicker/dist/react-datepicker.css";
 import styles from "./AdditionalStage.module.scss";
@@ -55,10 +54,6 @@ const AdditionalStage = () => {
   useEffect(() => {
     registerLocale("ru", ru);
   }, []);
-
-  useEffect(() => {
-    api.getOrderFromApi();
-  }, [])
 
   useEffect(() => {
     if (!rates.length) {

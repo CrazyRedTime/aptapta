@@ -38,9 +38,19 @@ const getRatesFromApi = async () => {
   return response.data.data;
 };
 
-const getOrderFromApi = async () => {
+const getOrderStatusIdFromApi = async () => {
   const response = await template.get(`/db/orderStatus`);
-  console.log(response);
+  return response.data.data[0];
+};
+
+const postOrderToApi = async (order) => {
+  const response = await template.post(`/db/order`, order);
+  return response.data.data;
+};
+
+const getOrderFromApi = async (orderId) => {
+  const response = await template.get(`/db/order/${orderId}`);
+  return response.data.data;
 };
 
 const api = {
@@ -48,6 +58,8 @@ const api = {
   getMarkerForMap,
   getCarsFromApi,
   getRatesFromApi,
+  getOrderStatusIdFromApi,
+  postOrderToApi,
   getOrderFromApi
 }
 
