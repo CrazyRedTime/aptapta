@@ -2,16 +2,30 @@
   display: flex;
   max-width: 736px;
   flex-wrap: wrap;
+  height: 70vh;
+  overflow: auto;
+  &::-webkit-scrollbar {
+    width: 16px;
+    background-color: #FFF;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: #0EC261;
+  }
+
 }
 
 .categoryWrapper {
   margin-right: 36px;
+  white-space: nowrap;
+  margin-bottom: 8px;
 }
 
 .radio {
   display: flex;
   padding-left: 20px;
   margin-bottom: 48px;
+  flex-wrap: wrap;
   input {
       display: none;
   }
@@ -42,9 +56,19 @@
   }
 }
 
+@media (max-width: 1024px) {
+  .carsContainer {
+    height: 50vh;
+  }
+}
 
 @media (max-width: 768px) {
   .categories {
     flex-direction: column;
+  }
+  .carsContainer {
+    flex-direction: column;
+    flex-wrap: nowrap;
+    height: 45vh;
   }
 }

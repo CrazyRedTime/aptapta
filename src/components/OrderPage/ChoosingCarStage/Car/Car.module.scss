@@ -32,7 +32,7 @@
 
 .carImage {
   width: 256px;
-  height: 116px;
+  height: 110px;
   background-size: contain;
   background-repeat: no-repeat;
   background-position: right;
@@ -51,13 +51,6 @@
 @media (max-width: 768px) {
   .car {
     height: 160px;
-  }
-  .name {
-    font-size: 14px;
-    line-height: 16px;
-  }
-  .price {
-    font-size: 11px;
-    line-height: 13px;
+    width: 100%;
   }
 }

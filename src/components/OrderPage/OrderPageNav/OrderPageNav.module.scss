@@ -70,3 +70,9 @@
             display: none;
         }
 }}}
+
+@media (max-width: 628px) {
+  .nav {
+    padding: 6px 16px;
+  }
+}

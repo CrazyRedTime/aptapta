@@ -70,6 +70,13 @@
   text-transform: capitalize;
 }
 
+.buttons {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
 .chooseModelButton {
     background: linear-gradient(90deg, hsla(148, 87%, 41%, 1) 2.61%, hsla(158, 96%, 32%, 1) 112.6%);
     background-blend-mode: darken;
@@ -108,6 +115,7 @@
 .detailsButton {
   display: none;   
   background: linear-gradient(90deg, hsla(148, 87%, 41%, 1) 2.61%, hsla(158, 96%, 32%, 1) 112.6%);
+  width: 40%;
   border-radius: 8px;
   border: none;
   font-style: normal;
@@ -117,8 +125,6 @@
   text-align: center;
   color: #FFF;
   padding: 8px 8px;
-  margin: 0 0 24px 0;
-
   &:disabled {
     background: #EEEEEE;
     cursor: default;
@@ -138,6 +144,7 @@
     .orderStatus {
         width: calc(100% - 86px);
         position: fixed;
+        padding: 18px;
         bottom: 0;
         background: #fff;
         z-index: 1;
@@ -148,6 +155,9 @@
     .detailsContainer {
       display: none;
       
+    }
+    .chooseModelButton {
+      width: 50%;
     }
     .detailsButton {
       display: block;
