@@ -37,11 +37,12 @@ const FinalStage = () => {
             {carId ? carId.name : currentCarName}
           </span>
         ) : null}
-        {carId || currentCarNumber ? carId ? (
-          <span className={styles.carNumber}>
-            {carId ? carId.number : currentCarNumber}
-          </span>
-        ) : null: null}
+        {carId ? carId.number ? <span className={styles.carNumber}>
+            {carId.number}
+          </span> : currentCarNumber ? <span className={styles.carNumber}>
+            {currentCarNumber}
+          </span> : null : null
+        }
         {carId || currentCarName ? (
           <div className={styles.optionContaner}>
             <span className={styles.title}>Топливо</span>{" "}

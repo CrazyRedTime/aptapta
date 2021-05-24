@@ -73,10 +73,10 @@ const OrderStatus = ({ currentStage, setCurrentStage }) => {
   const week = day * 7;
 
   useEffect(() => {
-    if (!orderStatusId) {
+    if (!orderStatusId && !history.location.search) {
       dispatch(fetchOrderStatusId());
     }
-  }, [orderStatusId, dispatch]);
+  }, [orderStatusId, dispatch, history.location.search]);
 
   useEffect(() => {
     const datesDifference = () => {

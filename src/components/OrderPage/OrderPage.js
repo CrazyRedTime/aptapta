@@ -25,9 +25,9 @@ const OrderPage = () => {
 
   useEffect(() => {
     if (history.location.search) {
+      setCurrentStage(4);
       const parsed = queryString.parse(history.location.search);
       dispatch(fetchPlacedOrder(parsed.orderId));
-      setCurrentStage(4);
     } else {
       setCurrentStage(1)
     }
