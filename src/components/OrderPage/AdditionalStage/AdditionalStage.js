@@ -121,7 +121,6 @@ const AdditionalStage = () => {
             />{" "}
             <label htmlFor="color0">любой</label>
           </div>
-
           {colors.map((color, index) => {
             return (
               <div className={styles.colorWrapper} key={index}>
