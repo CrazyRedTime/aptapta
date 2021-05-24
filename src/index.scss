@@ -124,6 +124,7 @@ code {
     .MuiAutocomplete-root {
         width: 100%!important;
         max-width: 100%;
+        margin-bottom: 20px;
     }
     .MuiFormControl-fullWidth {
         width: 100%;
@@ -133,5 +134,23 @@ code {
     .MuiFormLabel-root {
         width: 100%!important;
         justify-content: flex-start;
+    }
+    .react-datepicker-popper {
+        transform: none!important;
+        z-index: 999!important;
+    }
+}
+
+@media (max-width: 480px) {
+    .react-datepicker__time-container {
+        width: 60px !important;
+    }
+    .react-datepicker-popper {
+        width: 308px!important;
+    }
+    .react-datepicker__time-list {
+        li {
+            width: 40px!important;
+        }
     }
 }

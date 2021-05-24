@@ -18,7 +18,7 @@
 }
 
 .totalPriceContainer {
-  margin-bottom: 32px;
+    margin-bottom: 32px;
 }
 
 .orderPoint {
@@ -67,26 +67,24 @@
 }
 
 .capitalize {
-  text-transform: capitalize;
+    text-transform: capitalize;
 }
 
 .buttons {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .chooseModelButton {
     background: linear-gradient(90deg, hsla(148, 87%, 41%, 1) 2.61%, hsla(158, 96%, 32%, 1) 112.6%);
-    background-blend-mode: darken;
     border-radius: 8px;
     border: none;
     width: 100%;
     padding: 15px 5px;
     font-weight: 500;
     font-size: 18px;
-    line-height: 21px;
     text-align: center;
     color: #FFFFFF;
     &:disabled {
@@ -103,39 +101,38 @@
 }
 
 .cancelButton {
-  background: linear-gradient(90deg, #493013 0%, #7B0C3B 100%);
-  &:hover {
-    background: linear-gradient(90deg, darken(#493013, 5%) 0%, darken(#7B0C3B, 5%) 100%);
-  }
-  &:active {
-    background: linear-gradient(90deg, darken(#493013, 10%) 0%, darken(#7B0C3B, 10%) 100%);
-  }
+    background: linear-gradient(90deg, #493013 0%, #7B0C3B 100%);
+    &:hover {
+        background: linear-gradient(90deg, darken(#493013, 5%) 0%, darken(#7B0C3B, 5%) 100%);
+    }
+    &:active {
+        background: linear-gradient(90deg, darken(#493013, 10%) 0%, darken(#7B0C3B, 10%) 100%);
+    }
 }
 
 .detailsButton {
-  display: none;   
-  background: linear-gradient(90deg, hsla(148, 87%, 41%, 1) 2.61%, hsla(158, 96%, 32%, 1) 112.6%);
-  width: 40%;
-  border-radius: 8px;
-  border: none;
-  font-style: normal;
-  font-weight: 500;
-  font-size: 14px;
-  line-height: 20px;
-  text-align: center;
-  color: #FFF;
-  padding: 8px 8px;
-  &:disabled {
-    background: #EEEEEE;
-    cursor: default;
-    pointer-events: none;
-  }
-  &:hover {
-      background: linear-gradient(90deg, hsla(148, 87%, 31%, 1) 2.61%, hsla(158, 96%, 22%, 1) 112.6%);
-  }
-  &:active {
-      background: linear-gradient(90deg, hsla(148, 87%, 21%, 1) 2.61%, hsla(158, 96%, 12%, 1) 112.6%);
-  }
+    display: none;
+    background: linear-gradient(90deg, hsla(148, 87%, 41%, 1) 2.61%, hsla(158, 96%, 32%, 1) 112.6%);
+    width: 40%;
+    border-radius: 8px;
+    border: none;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    text-align: center;
+    color: #FFF;
+    padding: 8px;
+    &:disabled {
+        background: #EEEEEE;
+        cursor: default;
+        pointer-events: none;
+    }
+    &:hover {
+        background: linear-gradient(90deg, hsla(148, 87%, 31%, 1) 2.61%, hsla(158, 96%, 22%, 1) 112.6%);
+    }
+    &:active {
+        background: linear-gradient(90deg, hsla(148, 87%, 21%, 1) 2.61%, hsla(158, 96%, 12%, 1) 112.6%);
+    }
 }
 
 @media (max-width: 1280px) {}
@@ -153,27 +150,45 @@
         max-width: 100%;
     }
     .detailsContainer {
-      display: none;
-      
+        display: none;
     }
     .chooseModelButton {
-      width: 50%;
+        width: 50%;
     }
     .detailsButton {
-      display: block;
+        display: block;
     }
     .orderPoint {
-      margin-bottom: 16px;
+        margin-bottom: 16px;
     }
 }
 
 @media (max-width: 628px) {
     .orderStatus {
         width: 100%;
-        padding: 12px;
+        padding: 14px 20px;
     }
+    .detailsButton {
+        width: calc(50% - 8px);
+        font-size: 12px;
+    }
+    .chooseModelButton {
+        width: calc(50% - 8px);
+        font-size: 12px;
+        padding: 8px;
+    }
+}
 
-    .orderStatus {
-      padding: 14px 30px;
+@media (max-width: 370px) {
+    .buttons {
+        flex-direction: column;
+        button {
+            margin-bottom: 14px;
+            width: 100%;
+            padding: 10px;
+            &:last-child {
+                margin-bottom: 0;
+            }
+        }
     }
 }

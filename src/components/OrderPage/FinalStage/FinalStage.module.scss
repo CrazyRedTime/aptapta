@@ -1,66 +1,73 @@
 .carImage {
-  width: 256px;
-  height: 116px;
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: right;
+    width: 256px;
+    height: 116px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: right;
 }
 
 .imageContainer {
-  display: flex;
-  justify-content: flex-end;
+    display: flex;
+    justify-content: flex-end;
 }
 
 .infoContainer {
-  display: flex;
-  flex-direction: column;
+    display: flex;
+    flex-direction: column;
 }
 
 .resultContainer {
-  display: flex;
-  justify-content: space-between;
-  margin-right: 192px;
+    display: flex;
+    justify-content: space-between;
+    margin-right: 192px;
 }
 
 .carName {
-  font-size: 18px;
-  line-height: 21px;
-  color: #121212;
-  margin-bottom: 8px;
+    font-size: 18px;
+    line-height: 21px;
+    color: #121212;
+    margin-bottom: 8px;
 }
 
 .carNumber {
-  align-self: flex-start;
-  font-size: 14px;
-  line-height: 16px;
-  color: #121212;
-  border: 1px solid #999;
-  padding: 4px 8px;
-  border-radius: 4px;
-  margin-bottom: 8px;
+    align-self: flex-start;
+    font-size: 14px;
+    line-height: 16px;
+    color: #121212;
+    border: 1px solid #999;
+    padding: 4px 8px;
+    border-radius: 4px;
+    margin-bottom: 8px;
 }
 
 .title {
-  font-weight: 700;
-  font-size: 14px;
-  line-height: 16px;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 16px;
 }
 
 .value {
-  font-weight: 300;
-  font-size: 14px;
-  line-height: 16px;
+    font-weight: 300;
+    font-size: 14px;
+    line-height: 16px;
 }
 
 .optionContaner {
-  margin-bottom: 8px;
+    margin-bottom: 8px;
 }
 
 .confirm {
-  font-style: normal;
-  font-weight: normal;
-  font-size: 24px;
-  line-height: 28px;
-  color: #121212;
-  margin-bottom: 16px;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 24px;
+    line-height: 28px;
+    color: #121212;
+    margin-bottom: 16px;
+}
+
+@media (max-width: 628px) {
+    .resultContainer {
+        flex-direction: column;
+        width: 100%;
+    }
 }
