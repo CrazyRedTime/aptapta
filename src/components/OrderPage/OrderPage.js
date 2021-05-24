@@ -15,7 +15,7 @@ import { useDispatch } from "react-redux";
 import { fetchPlacedOrder } from "../../redux/placedOrder/placedOrder";
 
 const OrderPage = () => {
-  const [currentStage, setCurrentStage] = useState(1);
+  const [currentStage, setCurrentStage] = useState(0);
 
   const [menuIsOpen, setMenuIsOpen] = useState(false);
 

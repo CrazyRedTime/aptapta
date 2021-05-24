@@ -5,6 +5,7 @@ const initialState = {};
 
 const placedOrder = (state = initialState, {type, payload}) => {
   switch (type) {
+
     case FETCH_PLACED_ORDER_SUCCESS:
       return {
         ...state,

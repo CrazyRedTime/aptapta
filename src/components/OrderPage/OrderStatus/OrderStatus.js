@@ -60,6 +60,8 @@ const OrderStatus = ({ currentStage, setCurrentStage }) => {
     isRightWheel,
   } = useSelector(getPlacedOrderWithMemo);
 
+
+
   const [datesInterval, setDatesInterval] = useState(null);
   const [intervalString, setIntervalString] = useState(null);
   const [showDetails, setShowDetails] = useState(false);
@@ -182,10 +184,9 @@ const OrderStatus = ({ currentStage, setCurrentStage }) => {
           <button
             className={cn(styles.chooseModelButton, styles.cancelButton)}
             onClick={() => {
-              console.log("fhg");
+              dispatch(clearPlacedOrder());
               const location = history.location.pathname;
               history.push(location);
-              dispatch(clearPlacedOrder());
             }}
           >
             Отменить
@@ -195,6 +196,7 @@ const OrderStatus = ({ currentStage, setCurrentStage }) => {
       return (
         <button
           className={styles.chooseModelButton}
+          disabled={!currentRate}
           onClick={() => {
             setConfirmation(true);
           }}
