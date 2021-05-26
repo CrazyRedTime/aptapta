@@ -1,28 +1,14 @@
-import { useDispatch, useSelector } from "react-redux";
-import { setCurrentCar } from "../../../../redux/order/actions";
+import { useSelector } from "react-redux";
 import {
-  getCarStageIsCompleted,
   getCurrentCarId,
 } from "../../../../redux/order/selectors";
 import styles from "./Car.module.scss";
 import cn from "classnames";
-import { clearDetails } from "../../../../redux/details/actions";
 import normalizeImageLink from "../../../../helpers/normalizeImageLink";
 
-const Car = ({ car }) => {
+const Car = ({ car, chooseCar }) => {
 
   const normalLink = normalizeImageLink(car.thumbnail.path);
-
-  const carStageIsCompleted = useSelector(getCarStageIsCompleted);
-
-  const dispatch = useDispatch();
-
-  const chooseCar = (car) => {
-    dispatch(setCurrentCar(car));
-    if (carStageIsCompleted) {
-      dispatch(clearDetails());
-    }
-  };
 
   const currentCar = useSelector(getCurrentCarId);
 

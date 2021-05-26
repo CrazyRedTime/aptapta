@@ -205,7 +205,7 @@ const OrderStatus = ({ currentStage, setCurrentStage }) => {
   return (
     <div className={styles.orderStatus}>
       {currentAddress && (
-        <div className={cn({ [styles.detailsContainer]: !showDetails })}>
+        <div className={cn({ [styles.detailsContainer]: !showDetails, [styles.detailsMobile]: showDetails, [styles.placedOrderDetails]: showDetails && history.location.search })}>
           <div className={styles.yourOrderContainer}>
             <span className={styles.yourOrder}>Ваш заказ:</span>
           </div>

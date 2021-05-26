@@ -125,7 +125,7 @@ $activeColor: linear-gradient(90deg, hsla(148, 87%, 21%, 1) 2.61%, hsla(158, 96%
     font-size: 14px;
     text-align: center;
     color: #FFF;
-    padding: 8px;
+    padding: 17px 5px;
     &:disabled {
         background: #EEEEEE;
         cursor: default;
@@ -165,7 +165,26 @@ $activeColor: linear-gradient(90deg, hsla(148, 87%, 21%, 1) 2.61%, hsla(158, 96%
     .orderPoint {
         margin-bottom: 16px;
     }
+    .detailsMobile {
+      height: calc(100vh - 216px);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    .placedOrderDetails {
+      height: calc(100vh - 213px);
+    }
 }
+
+@media (max-width: 768px) {
+  .detailsMobile {
+    height: calc(100vh - 273px);
+  }
+  .placedOrderDetails {
+    height: calc(100vh - 213px);
+  }
+}
+
 
 @media (max-width: 628px) {
     .orderStatus {
@@ -175,11 +194,15 @@ $activeColor: linear-gradient(90deg, hsla(148, 87%, 21%, 1) 2.61%, hsla(158, 96%
     .detailsButton {
         width: calc(50% - 8px);
         font-size: 12px;
+        padding: 8px;
     }
     .chooseModelButton {
         width: calc(50% - 8px);
         font-size: 12px;
         padding: 8px;
+    }
+    .detailsMobile {
+      height: calc(100vh - 240px);
     }
 }
 
@@ -195,4 +218,7 @@ $activeColor: linear-gradient(90deg, hsla(148, 87%, 21%, 1) 2.61%, hsla(158, 96%
             }
         }
     }
+    .detailsMobile {
+      height: calc(100vh - 292px);
+    } 
 }

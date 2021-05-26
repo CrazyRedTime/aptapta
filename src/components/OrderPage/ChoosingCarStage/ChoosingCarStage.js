@@ -6,11 +6,12 @@ import {
   getCarsWithMemo,
   getCategoriesWithMemo,
 } from "../../../redux/cars/selectors";
-import { setCurrentCategory } from "../../../redux/order/actions";
-import { getCurrentCategory } from "../../../redux/order/selectors";
+import { setCurrentCar, setCurrentCategory, uncompleteAdditionalStage } from "../../../redux/order/actions";
+import { getCarStageIsCompleted, getCurrentCategory } from "../../../redux/order/selectors";
 import Car from "./Car/Car";
 import Preloader from "../../Preloader/Preloader";
 import styles from "./ChoosingCarStage.module.scss";
+import { clearDetails } from "../../../redux/details/actions";
 
 const ChoosingCarStage = () => {
   const dispatch = useDispatch();
@@ -23,6 +24,8 @@ const ChoosingCarStage = () => {
 
   const carsIsFetching = useSelector(getCarsIsFetching);
 
+  const carStageIsCompleted = useSelector(getCarStageIsCompleted);
+
   useEffect(() => {
     dispatch(fetchCars());
   }, [dispatch]);
@@ -34,6 +37,14 @@ const ChoosingCarStage = () => {
   const filteredCars = currentCategory
     ? cars.filter((car) => car.categoryId.id === currentCategory)
     : cars;
+
+    const chooseCar = (car) => {
+      dispatch(setCurrentCar(car));
+      if (carStageIsCompleted) {
+        dispatch(clearDetails());
+        dispatch(uncompleteAdditionalStage());
+      }
+    };
 
   return (
     <div>
@@ -68,7 +79,7 @@ const ChoosingCarStage = () => {
       </div>
       <div className={styles.carsContainer}>
         {filteredCars.map((car) => {
-          return <Car key={car.id} car={car} />;
+          return <Car key={car.id} car={car} chooseCar={chooseCar} />;
         })}
       </div>
     </div>
