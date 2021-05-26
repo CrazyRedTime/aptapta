@@ -8,7 +8,7 @@ import {
   setRate,
   setRightHandDrive,
   setTo,
-} from "../../../redux/details/details";
+} from "../../../redux/details/actions";
 import {
   getCurrentColor,
   getFromDate,
@@ -18,6 +18,7 @@ import {
   getBabySeat,
   getRigthHandDrive,
 } from "../../../redux/details/selectors";
+import Preloader from '../../Preloader/Preloader'
 import DatePicker, { registerLocale } from "react-datepicker";
 import { addDays, addMinutes } from "date-fns";
 import ru from "date-fns/locale/ru";
@@ -26,10 +27,10 @@ import cn from "classnames";
 
 import "react-datepicker/dist/react-datepicker.css";
 import styles from "./AdditionalStage.module.scss";
-import { fetchRates } from "../../../redux/rates/rates";
-import { getRatesWithMemo } from "../../../redux/rates/selectors";
+import { fetchRates } from "../../../redux/rates/actions";
+import { getRatesIsFetching, getRatesWithMemo } from "../../../redux/rates/selectors";
 import { getCurrentPrice } from "../../../redux/order/selectors";
-import { uncompleteAdditionalStage } from "../../../redux/order/order";
+import { uncompleteAdditionalStage } from "../../../redux/order/actions";
 
 const AdditionalStage = () => {
   const dispatch = useDispatch();
@@ -44,6 +45,7 @@ const AdditionalStage = () => {
   const babySeat = useSelector(getBabySeat);
   const rightHandDrive = useSelector(getRigthHandDrive);
   const currentPrice = useSelector(getCurrentPrice);
+  const ratesIfFetching = useSelector(getRatesIsFetching);
 
   useEffect(() => {
     if (!currentPrice) {
@@ -108,6 +110,7 @@ const AdditionalStage = () => {
 
   return (
     <div className={styles.additionalContainer}>
+      {ratesIfFetching  && <Preloader />}
       <div className={cn(styles.additionalItem, styles.radio)}>
         <span className={styles.additionalTitle}>Цвет</span>
         <div className={styles.colorsContainer}>

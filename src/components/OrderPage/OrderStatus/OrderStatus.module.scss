@@ -1,3 +1,7 @@
+$buttonColor: linear-gradient(90deg, hsla(148, 87%, 41%, 1) 2.61%, hsla(158, 96%, 32%, 1) 112.6%);
+$hoverColor: linear-gradient(90deg, hsla(148, 87%, 31%, 1) 2.61%, hsla(158, 96%, 22%, 1) 112.6%);
+$activeColor: linear-gradient(90deg, hsla(148, 87%, 21%, 1) 2.61%, hsla(158, 96%, 12%, 1) 112.6%);
+
 .orderStatus {
     padding: 32px 64px 32px 32px;
     width: 30%;
@@ -78,7 +82,7 @@
 }
 
 .chooseModelButton {
-    background: linear-gradient(90deg, hsla(148, 87%, 41%, 1) 2.61%, hsla(158, 96%, 32%, 1) 112.6%);
+    background: $buttonColor;
     border-radius: 8px;
     border: none;
     width: 100%;
@@ -93,10 +97,10 @@
         pointer-events: none;
     }
     &:hover {
-        background: linear-gradient(90deg, hsla(148, 87%, 31%, 1) 2.61%, hsla(158, 96%, 22%, 1) 112.6%);
+        background: $hoverColor;
     }
     &:active {
-        background: linear-gradient(90deg, hsla(148, 87%, 21%, 1) 2.61%, hsla(158, 96%, 12%, 1) 112.6%);
+        background: $activeColor;
     }
 }
 
@@ -112,7 +116,7 @@
 
 .detailsButton {
     display: none;
-    background: linear-gradient(90deg, hsla(148, 87%, 41%, 1) 2.61%, hsla(158, 96%, 32%, 1) 112.6%);
+    background: $buttonColor;
     width: 40%;
     border-radius: 8px;
     border: none;
@@ -128,10 +132,10 @@
         pointer-events: none;
     }
     &:hover {
-        background: linear-gradient(90deg, hsla(148, 87%, 31%, 1) 2.61%, hsla(158, 96%, 22%, 1) 112.6%);
+        background: $hoverColor;
     }
     &:active {
-        background: linear-gradient(90deg, hsla(148, 87%, 21%, 1) 2.61%, hsla(158, 96%, 12%, 1) 112.6%);
+        background: $activeColor;
     }
 }
 

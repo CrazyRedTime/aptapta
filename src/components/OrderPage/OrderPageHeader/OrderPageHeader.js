@@ -14,7 +14,7 @@ const OrderPageHeader = () => {
         <span className={styles.miniName}>Need for drive</span>
         <div className={styles.cities}>
           <ReactSVG src={process.env.PUBLIC_URL + '/images/marker.svg'}/>
-          <span className={styles.city}>{cityId ? cityId.name : currentCity ? currentCity.name : 'Ульяновск'}</span>
+          <span className={styles.city}>{cityId ? cityId.name : currentCity ? currentCity.name : null}</span>
         </div>
       </div>
   )

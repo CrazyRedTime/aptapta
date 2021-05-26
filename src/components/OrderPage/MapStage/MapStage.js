@@ -1,11 +1,11 @@
 import { useDispatch, useSelector } from "react-redux";
-import { fetchPoints, setCenter, setZoom } from "../../../redux/map/map";
+import { fetchPoints, setCenter, setZoom } from "../../../redux/map/actions";
 import {
   setCurrentAddress,
   setCurrentCar,
   setCurrentCity,
   uncompleteAdditionalStage,
-} from "../../../redux/order/order";
+} from "../../../redux/order/actions";
 import {
   getAdditionalStageISCompleted,
   getCarStageIsCompleted,
@@ -16,6 +16,7 @@ import {
 import {
   getCenterWithMemo,
   getCitiesWithMemo,
+  getMapIsFetching,
   getMarkersWithMemo,
   getPointsAddress,
   getZoom,
@@ -26,7 +27,9 @@ import { useEffect } from "react";
 import { useHistory } from "react-router";
 import Geocode from "react-geocode";
 import apiKey from "../../../api/apiKey";
-import { clearDetails } from "../../../redux/details/details";
+import { clearDetails } from "../../../redux/details/actions";
+import Preloader from "../../Preloader/Preloader";
+import styles from './MapStage.module.scss'
 
 const MapStage = () => {
   const dispatch = useDispatch();
@@ -43,6 +46,7 @@ const MapStage = () => {
   const carStageIsCompleted = useSelector(getCarStageIsCompleted);
   const additionalStageIsCompleted = useSelector(getAdditionalStageISCompleted);
   const points = useSelector(getPointsAddress);
+  const mapIsFetching = useSelector(getMapIsFetching);
 
   useEffect(() => {
     Geocode.setApiKey(apiKey);
@@ -87,6 +91,7 @@ const MapStage = () => {
 
   return (
     <div>
+      {mapIsFetching ? <Preloader /> : null} 
       <MapForm
         citiesFromState={citiesFromState}
         filteredMarkers={filteredMarkers}
@@ -97,6 +102,7 @@ const MapStage = () => {
         setZoom={changeZoom}
         setCurrentAddress={changeCurrentAddress}
       />
+      <div className={styles.mapTitleContainer}><span className={styles.mapTitle}>Выбрать на карте:</span></div>
       <OrderPageMap
         center={center}
         zoom={zoom}

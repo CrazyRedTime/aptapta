@@ -97,6 +97,29 @@ export const getOrderStatusIdWithMemo = createSelector(
   (orderStatusId) => orderStatusId
 );
 
+export const getOrder = createSelector(
+  getCurrentAddressWithMemo,
+  getCurrentCarName,
+  getCurrentCarPrices,
+  getCurrentPrice,
+  getOrderStatusIdWithMemo,
+  (
+    currentAddress,
+    currentCarName,
+    currentCarPrices,
+    currentPrice,
+    orderStatusId
+  ) => {
+    return {
+      currentAddress,
+      currentCarName,
+      currentCarPrices,
+      currentPrice,
+      orderStatusId,
+    };
+  }
+);
+
 export const getOrderForPosting = createSelector(
   getOrderStatusIdWithMemo,
   getCurrentCityWithMemo,
@@ -109,7 +132,7 @@ export const getOrderForPosting = createSelector(
       cityId,
       pointId,
       carId,
-      price
+      price,
     };
   }
 );

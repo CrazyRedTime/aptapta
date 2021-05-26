@@ -1,12 +1,12 @@
 import { useDispatch, useSelector } from "react-redux";
-import { setCurrentCar } from "../../../../redux/order/order";
+import { setCurrentCar } from "../../../../redux/order/actions";
 import {
   getCarStageIsCompleted,
   getCurrentCarId,
 } from "../../../../redux/order/selectors";
 import styles from "./Car.module.scss";
 import cn from "classnames";
-import { clearDetails } from "../../../../redux/details/details";
+import { clearDetails } from "../../../../redux/details/actions";
 import normalizeImageLink from "../../../../helpers/normalizeImageLink";
 
 const Car = ({ car }) => {

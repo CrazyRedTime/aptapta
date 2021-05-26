@@ -120,6 +120,10 @@ code {
     padding: 0!important;
 }
 
+.react-datepicker__time-list-item--selected, .react-datepicker__day--selected, .react-datepicker__day--selected:hover, .react-datepicker__day--keyboard-selected {
+  background-color: #0EC261!important;
+}
+
 @media (max-width: 628px) {
     .MuiAutocomplete-root {
         width: 100%!important;

@@ -12,7 +12,7 @@ import FinalStage from "./FinalStage/FinalStage";
 import { useHistory } from "react-router";
 import queryString from 'query-string';
 import { useDispatch } from "react-redux";
-import { fetchPlacedOrder } from "../../redux/placedOrder/placedOrder";
+import { fetchPlacedOrder } from "../../redux/placedOrder/actions";
 
 const OrderPage = () => {
   const [currentStage, setCurrentStage] = useState(0);

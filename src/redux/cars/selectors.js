@@ -1,7 +1,7 @@
 import { createSelector } from "reselect";
 
 const getCarsFromState = (state) => {
-  return state.cars;
+  return state.cars.cars;
 };
 
 export const getCarsWithMemo = createSelector(
@@ -11,7 +11,7 @@ export const getCarsWithMemo = createSelector(
 
 const getCategoriesFromState = (state) => {
 
-  return state.cars.reduce((acc, car) => {
+  return state.cars.cars.reduce((acc, car) => {
     if (!acc.some((category) => category.id === car.categoryId.id)) {
       acc.push({
         id: car.categoryId.id,
@@ -29,4 +29,8 @@ export const getCategoriesWithMemo = createSelector(
 
 export const getCurrentCarColors = (state) => {
   return state.order.currentCar.colors
+};
+
+export const getCarsIsFetching = (state) => {
+  return state.cars.isFetching;
 };

@@ -2,49 +2,40 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import cn from "classnames";
 import { useHistory } from "react-router";
-import {
-  getBabySeat,
-  getCurrentColor,
-  getCurrentRate,
-  getFromDate,
-  getFullTank,
-  getRigthHandDrive,
-  getToDate,
-} from "../../../redux/details/selectors";
+import { getDetals } from "../../../redux/details/selectors";
 import {
   completeAdditionalStage,
   completeCarStage,
   completeMapStage,
   fetchOrderStatusId,
   setCurrentPrice,
-} from "../../../redux/order/order";
-import {
-  getCurrentAddressWithMemo,
-  getCurrentCarName,
-  getCurrentCarPrices,
-  getCurrentPrice,
-  getOrderStatusIdWithMemo,
-} from "../../../redux/order/selectors";
+} from "../../../redux/order/actions";
+import { getOrder } from "../../../redux/order/selectors";
 import styles from "./OrderStatus.module.scss";
 import ConfirmationStage from "../ConfirmationStage/ConfirmationStage";
 import { getPlacedOrderWithMemo } from "../../../redux/placedOrder/selectors";
-import { clearPlacedOrder } from "../../../redux/placedOrder/placedOrder";
+import { clearPlacedOrder } from "../../../redux/placedOrder/actions";
 
 const OrderStatus = ({ currentStage, setCurrentStage }) => {
   let history = useHistory();
 
-  const currentAddress = useSelector(getCurrentAddressWithMemo);
-  const currentCarName = useSelector(getCurrentCarName);
-  const currentCarPrices = useSelector(getCurrentCarPrices);
-  const currentColor = useSelector(getCurrentColor);
-  const from = useSelector(getFromDate);
-  const to = useSelector(getToDate);
-  const currentRate = useSelector(getCurrentRate);
-  const fulltank = useSelector(getFullTank);
-  const babySeat = useSelector(getBabySeat);
-  const rightHandDrive = useSelector(getRigthHandDrive);
-  const currentPrice = useSelector(getCurrentPrice);
-  const orderStatusId = useSelector(getOrderStatusIdWithMemo);
+  const {
+    currentAddress,
+    currentCarName,
+    currentCarPrices,
+    currentPrice,
+    orderStatusId,
+  } = useSelector(getOrder);
+
+  const {
+    currentColor,
+    from,
+    to,
+    currentRate,
+    fulltank,
+    babySeat,
+    rightHandDrive,
+  } = useSelector(getDetals);
 
   const {
     pointId,
@@ -60,8 +51,6 @@ const OrderStatus = ({ currentStage, setCurrentStage }) => {
     isRightWheel,
   } = useSelector(getPlacedOrderWithMemo);
 
-
-
   const [datesInterval, setDatesInterval] = useState(null);
   const [intervalString, setIntervalString] = useState(null);
   const [showDetails, setShowDetails] = useState(false);
@@ -73,6 +62,12 @@ const OrderStatus = ({ currentStage, setCurrentStage }) => {
   const hour = min * 60;
   const day = hour * 24;
   const week = day * 7;
+
+  useEffect(() => {
+    if (!currentAddress) {
+      setShowDetails(false)
+    }
+  }, [currentAddress])
 
   useEffect(() => {
     if (!orderStatusId && !history.location.search) {
@@ -209,115 +204,120 @@ const OrderStatus = ({ currentStage, setCurrentStage }) => {
 
   return (
     <div className={styles.orderStatus}>
-      <div className={cn({ [styles.detailsContainer]: !showDetails })}>
-        <div className={styles.yourOrderContainer}>
-          <span className={styles.yourOrder}>Ваш заказ:</span>
-        </div>
-        {pointId || currentAddress ? (
-          <div className={styles.orderPoint}>
-            <span className={styles.pointTitle}>Пункт выдачи</span>
-            <span className={styles.dots}></span>
-            <div className={styles.point}>
-              <span>{`${
-                cityId ? cityId.name : currentAddress.city.name
-              },`}</span>
-              <span>{`${
-                pointId ? pointId.address : currentAddress.address
+      {currentAddress && (
+        <div className={cn({ [styles.detailsContainer]: !showDetails })}>
+          <div className={styles.yourOrderContainer}>
+            <span className={styles.yourOrder}>Ваш заказ:</span>
+          </div>
+          {pointId || currentAddress ? (
+            <div className={styles.orderPoint}>
+              <span className={styles.pointTitle}>Пункт выдачи</span>
+              <span className={styles.dots}></span>
+              <div className={styles.point}>
+                <span>{`${
+                  cityId ? cityId.name : currentAddress.city.name
+                },`}</span>
+                <span>{`${
+                  pointId ? pointId.address : currentAddress.address
+                }`}</span>
+              </div>
+            </div>
+          ) : null}
+          {carId || currentCarName ? (
+            <div className={styles.orderPoint}>
+              <span className={styles.pointTitle}>Модель</span>
+              <span className={styles.dots}></span>
+              <div className={styles.point}>
+                <span>{carId ? carId.name : currentCarName}</span>
+              </div>
+            </div>
+          ) : null}
+          {color || currentColor ? (
+            <div className={styles.orderPoint}>
+              <span className={styles.pointTitle}>Цвет</span>
+              <span className={styles.dots}></span>
+              <div className={styles.point}>
+                <span className={styles.capitalize}>
+                  {color ? color : currentColor}
+                </span>
+              </div>
+            </div>
+          ) : null}
+          {intervalString ? (
+            <div className={styles.orderPoint}>
+              <span className={styles.pointTitle}>Длительность аренды</span>
+              <span className={styles.dots}></span>
+              <div className={styles.point}>
+                <span>{intervalString}</span>
+              </div>
+            </div>
+          ) : null}
+          {rateId || currentRate ? (
+            <div className={styles.orderPoint}>
+              <span className={styles.pointTitle}>Тариф</span>
+              <span className={styles.dots}></span>
+              <div className={styles.point}>
+                <span>
+                  {rateId
+                    ? rateId.rateTypeId.name
+                    : currentRate.rateTypeId.name}
+                </span>
+              </div>
+            </div>
+          ) : null}
+          {isFullTank || fulltank ? (
+            <div className={styles.orderPoint}>
+              <span className={styles.pointTitle}>Полный бак</span>
+              <span className={styles.dots}></span>
+              <div className={styles.point}>
+                <span>Да</span>
+              </div>
+            </div>
+          ) : null}
+          {isNeedChildChair || babySeat ? (
+            <div className={styles.orderPoint}>
+              <span className={styles.pointTitle}>Детское кресло</span>
+              <span className={styles.dots}></span>
+              <div className={styles.point}>
+                <span>Да</span>
+              </div>
+            </div>
+          ) : null}
+          {isRightWheel || rightHandDrive ? (
+            <div className={styles.orderPoint}>
+              <span className={styles.pointTitle}>Правый руль</span>
+              <span className={styles.dots}></span>
+              <div className={styles.point}>
+                <span>Да</span>
+              </div>
+            </div>
+          ) : null}
+          {price || currentCarPrices || currentPrice ? (
+            <div className={styles.totalPriceContainer}>
+              <span className={styles.yourOrder}>{`Цена: ${
+                price
+                  ? `${price} ₽`
+                  : currentPrice
+                  ? `${currentPrice} ₽`
+                  : `${currentCarPrices}`
               }`}</span>
             </div>
-          </div>
-        ) : null}
-        {carId || currentCarName ? (
-          <div className={styles.orderPoint}>
-            <span className={styles.pointTitle}>Модель</span>
-            <span className={styles.dots}></span>
-            <div className={styles.point}>
-              <span>{carId ? carId.name : currentCarName}</span>
-            </div>
-          </div>
-        ) : null}
-        {color || currentColor ? (
-          <div className={styles.orderPoint}>
-            <span className={styles.pointTitle}>Цвет</span>
-            <span className={styles.dots}></span>
-            <div className={styles.point}>
-              <span className={styles.capitalize}>
-                {color ? color : currentColor}
-              </span>
-            </div>
-          </div>
-        ) : null}
-        {intervalString ? (
-          <div className={styles.orderPoint}>
-            <span className={styles.pointTitle}>Длительность аренды</span>
-            <span className={styles.dots}></span>
-            <div className={styles.point}>
-              <span>{intervalString}</span>
-            </div>
-          </div>
-        ) : null}
-        {rateId || currentRate ? (
-          <div className={styles.orderPoint}>
-            <span className={styles.pointTitle}>Тариф</span>
-            <span className={styles.dots}></span>
-            <div className={styles.point}>
-              <span>
-                {rateId ? rateId.rateTypeId.name : currentRate.rateTypeId.name}
-              </span>
-            </div>
-          </div>
-        ) : null}
-        {isFullTank || fulltank ? (
-          <div className={styles.orderPoint}>
-            <span className={styles.pointTitle}>Полный бак</span>
-            <span className={styles.dots}></span>
-            <div className={styles.point}>
-              <span>Да</span>
-            </div>
-          </div>
-        ) : null}
-        {isNeedChildChair || babySeat ? (
-          <div className={styles.orderPoint}>
-            <span className={styles.pointTitle}>Детское кресло</span>
-            <span className={styles.dots}></span>
-            <div className={styles.point}>
-              <span>Да</span>
-            </div>
-          </div>
-        ) : null}
-        {isRightWheel || rightHandDrive ? (
-          <div className={styles.orderPoint}>
-            <span className={styles.pointTitle}>Правый руль</span>
-            <span className={styles.dots}></span>
-            <div className={styles.point}>
-              <span>Да</span>
-            </div>
-          </div>
-        ) : null}
-        {price || currentCarPrices || currentPrice ? (
-          <div className={styles.totalPriceContainer}>
-            <span className={styles.yourOrder}>{`Цена: ${
-              price
-                ? `${price} ₽`
-                : currentPrice
-                ? `${currentPrice} ₽`
-                : `${currentCarPrices}`
-            }`}</span>
-          </div>
-        ) : null}
-      </div>
+          ) : null}
+        </div>
+      )}
+
       <div className={styles.buttons}>
-      <button
-        disabled={!currentAddress && !pointId}
-        className={styles.detailsButton}
-        onClick={() => setShowDetails(!showDetails)}
-      >
-        {showDetails ? "Скрыть детали заказа" : "Показать детали заказа"}
-      </button>
-      {renderButton()}
-      {confirmation ? (
-        <ConfirmationStage setConfirmation={setConfirmation} />
-      ) : null}
+        <button
+          disabled={!currentAddress && !pointId}
+          className={styles.detailsButton}
+          onClick={() => setShowDetails(!showDetails)}
+        >
+          {showDetails ? "Скрыть детали заказа" : "Показать детали заказа"}
+        </button>
+        {renderButton()}
+        {confirmation ? (
+          <ConfirmationStage setConfirmation={setConfirmation} />
+        ) : null}
       </div>
     </div>
   );

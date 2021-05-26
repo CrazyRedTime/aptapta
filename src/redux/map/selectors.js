@@ -42,3 +42,7 @@ export const getCenterWithMemo = createSelector([getCenter], (center) => {
 export const getZoom = (state) => {
   return state.map.zoom;
 };
+
+export const getMapIsFetching = (state) => {
+  return state.map.isFetching;
+};

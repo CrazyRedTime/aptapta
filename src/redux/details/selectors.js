@@ -8,19 +8,17 @@ export const getFromDate = (state) => {
   return state.details.from;
 };
 
-const getFromDateMilliseconds = createSelector(
-  getFromDate,
-  fromDate => fromDate.getTime()
+const getFromDateMilliseconds = createSelector(getFromDate, (fromDate) =>
+  fromDate.getTime()
 );
 
 export const getToDate = (state) => {
   return state.details.to;
 };
 
-const getToDateMilliseconds = createSelector(
-  getToDate,
-  toDate => toDate.getTime()
-)
+const getToDateMilliseconds = createSelector(getToDate, (toDate) =>
+  toDate.getTime()
+);
 
 export const getCurrentRate = (state) => {
   return state.details.rate;
@@ -37,6 +35,27 @@ export const getBabySeat = (state) => {
 export const getRigthHandDrive = (state) => {
   return state.details.options.rightHandDrive;
 };
+
+export const getDetals = createSelector(
+  getCurrentColor,
+  getFromDate,
+  getToDate,
+  getCurrentRate,
+  getFullTank,
+  getBabySeat,
+  getRigthHandDrive,
+  (currentColor, from, to, currentRate, fulltank, babySeat, rightHandDrive) => {
+    return {
+      currentColor,
+      from,
+      to,
+      currentRate,
+      fulltank,
+      babySeat,
+      rightHandDrive,
+    };
+  }
+);
 
 export const getDetalsForPosting = createSelector(
   getCurrentColor,

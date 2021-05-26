@@ -5,3 +5,9 @@
 .none {
     display: none !important;
 }
+
+@media (max-width: 768px)  {
+  .mapForm {
+    margin-bottom: 28px;
+  }
+}

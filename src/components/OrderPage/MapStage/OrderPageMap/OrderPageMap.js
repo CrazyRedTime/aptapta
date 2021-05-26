@@ -2,7 +2,7 @@ import GoogleMapReact from "google-map-react";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import apiKey from "../../../../api/apiKey";
-import { fetchMarkers } from "../../../../redux/map/map";
+import { fetchMarkers } from "../../../../redux/map/actions";
 import { getPointsAddress } from "../../../../redux/map/selectors";
 import Marker from "./Marker/Marker";
 import styles from "./OrderPageMap.module.scss";

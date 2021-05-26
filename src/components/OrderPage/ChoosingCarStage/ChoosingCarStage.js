@@ -1,13 +1,15 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchCars } from "../../../redux/cars/cars";
+import { fetchCars } from "../../../redux/cars/actions";
 import {
+  getCarsIsFetching,
   getCarsWithMemo,
   getCategoriesWithMemo,
 } from "../../../redux/cars/selectors";
-import { setCurrentCategory } from "../../../redux/order/order";
+import { setCurrentCategory } from "../../../redux/order/actions";
 import { getCurrentCategory } from "../../../redux/order/selectors";
 import Car from "./Car/Car";
+import Preloader from "../../Preloader/Preloader";
 import styles from "./ChoosingCarStage.module.scss";
 
 const ChoosingCarStage = () => {
@@ -19,11 +21,11 @@ const ChoosingCarStage = () => {
 
   const categories = useSelector(getCategoriesWithMemo);
 
+  const carsIsFetching = useSelector(getCarsIsFetching);
+
   useEffect(() => {
-    if (!cars.length) {
-      dispatch(fetchCars());
-    }
-  }, [dispatch, cars]);
+    dispatch(fetchCars());
+  }, [dispatch]);
 
   const onRadioChange = (e) => {
     dispatch(setCurrentCategory(e.target.value));
@@ -35,6 +37,7 @@ const ChoosingCarStage = () => {
 
   return (
     <div>
+      {carsIsFetching && <Preloader />}
       <div className={styles.categories}>
         <div className={styles.radio}>
           <div className={styles.categoryWrapper}>

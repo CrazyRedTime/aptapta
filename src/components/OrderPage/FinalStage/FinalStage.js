@@ -6,7 +6,8 @@ import {
   getCurrentCarNumber,
   getCurrentCarImageLink,
 } from "../../../redux/order/selectors";
-import { getPlacedOrderWithMemo } from "../../../redux/placedOrder/selectors";
+import { getPlacedOrderWithMemo, getOrderIsFetching } from "../../../redux/placedOrder/selectors";
+import Preloader from "../../Preloader/Preloader";
 
 import styles from "./FinalStage.module.scss";
 
@@ -19,6 +20,8 @@ const FinalStage = () => {
 
   const { carId, dateFrom, isFullTank } = useSelector(getPlacedOrderWithMemo);
 
+  const orderIsFetching = useSelector(getOrderIsFetching)
+
   const normalLink = carId
     ? normalizeImageLink(carId.thumbnail.path)
     : currentCarImageLink
@@ -27,6 +30,7 @@ const FinalStage = () => {
 
   return (
     <div className={styles.resultContainer}>
+      {orderIsFetching && <Preloader />}
       <div className={styles.infoContainer}>
         {carId ? (
           <span className={styles.confirm}>Ваш заказ подтверждён</span>
@@ -36,8 +40,8 @@ const FinalStage = () => {
             {carId ? carId.name : currentCarName}
           </span>
         ) : null}
-        {carId ? (
-          carId.number ? (
+        {carId || currentCarNumber ? (
+          carId && carId.number ? (
             <span className={styles.carNumber}>{carId.number}</span>
           ) : currentCarNumber ? (
             <span className={styles.carNumber}>{currentCarNumber}</span>
