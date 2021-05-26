@@ -204,7 +204,7 @@ const OrderStatus = ({ currentStage, setCurrentStage }) => {
 
   return (
     <div className={styles.orderStatus}>
-      {currentAddress && (
+      {currentAddress || pointId ? (
         <div className={cn({ [styles.detailsContainer]: !showDetails, [styles.detailsMobile]: showDetails, [styles.placedOrderDetails]: showDetails && history.location.search })}>
           <div className={styles.yourOrderContainer}>
             <span className={styles.yourOrder}>Ваш заказ:</span>
@@ -304,7 +304,7 @@ const OrderStatus = ({ currentStage, setCurrentStage }) => {
             </div>
           ) : null}
         </div>
-      )}
+      ) : null}
 
       <div className={styles.buttons}>
         <button

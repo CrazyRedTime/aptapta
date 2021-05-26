@@ -183,6 +183,9 @@ $activeColor: linear-gradient(90deg, hsla(148, 87%, 21%, 1) 2.61%, hsla(158, 96%
   .placedOrderDetails {
     height: calc(100vh - 213px);
   }
+  .orderPoint {
+    margin-bottom: 8px;
+  }
 }
 
 
@@ -220,5 +223,8 @@ $activeColor: linear-gradient(90deg, hsla(148, 87%, 21%, 1) 2.61%, hsla(158, 96%
     }
     .detailsMobile {
       height: calc(100vh - 292px);
+    }
+    .yourOrderContainer {
+      margin-bottom: 8px;
     } 
 }
