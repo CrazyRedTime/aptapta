@@ -12,11 +12,10 @@ import {
 } from "../../../redux/order/actions";
 import { getOrder } from "../../../redux/order/selectors";
 import styles from "./OrderStatus.module.scss";
-import ConfirmationStage from "../ConfirmationStage/ConfirmationStage";
 import { getPlacedOrderWithMemo } from "../../../redux/placedOrder/selectors";
 import { clearPlacedOrder } from "../../../redux/placedOrder/actions";
 
-const OrderStatus = ({ currentStage, setCurrentStage }) => {
+const OrderStatus = ({ currentStage, setCurrentStage, setConfirmation }) => {
   let history = useHistory();
 
   const {
@@ -54,7 +53,6 @@ const OrderStatus = ({ currentStage, setCurrentStage }) => {
   const [datesInterval, setDatesInterval] = useState(null);
   const [intervalString, setIntervalString] = useState(null);
   const [showDetails, setShowDetails] = useState(false);
-  const [confirmation, setConfirmation] = useState(false);
 
   const dispatch = useDispatch();
 
@@ -315,9 +313,6 @@ const OrderStatus = ({ currentStage, setCurrentStage }) => {
           {showDetails ? "Скрыть детали заказа" : "Показать детали заказа"}
         </button>
         {renderButton()}
-        {confirmation ? (
-          <ConfirmationStage setConfirmation={setConfirmation} />
-        ) : null}
       </div>
     </div>
   );
