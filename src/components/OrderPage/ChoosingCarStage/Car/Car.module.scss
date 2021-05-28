@@ -33,9 +33,7 @@
 .carImage {
   width: 256px;
   height: 110px;
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: right;
+  object-fit: contain;
 }
 
 .info {

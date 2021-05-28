@@ -5,12 +5,15 @@ import {
 import styles from "./Car.module.scss";
 import cn from "classnames";
 import normalizeImageLink from "../../../../helpers/normalizeImageLink";
+import { useState } from "react";
 
 const Car = ({ car, chooseCar }) => {
 
   const normalLink = normalizeImageLink(car.thumbnail.path);
 
   const currentCar = useSelector(getCurrentCarId);
+
+  const [hasError, setHasError] = useState(false);
 
   const classes = cn(styles.car, {
     [styles.active]: car.id === currentCar,
@@ -25,12 +28,11 @@ const Car = ({ car, chooseCar }) => {
         </span>
       </div>
       <div className={styles.imageContainer}>
-        <div
+        <img onError={() => setHasError(true)}
           className={styles.carImage}
-          style={{
-            backgroundImage: `url(${normalLink})`,
-          }}
-        ></div>
+          src={hasError ? process.env.PUBLIC_URL + '/images/noPhoto.png' : normalLink}
+          alt={car.name}
+        ></img>
       </div>
     </div>
   );
