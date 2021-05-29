@@ -1,10 +1,9 @@
 .carImage {
-    width: 256px;
-    height: 116px;
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: right;
+  width: 256px;
+  height: 110px;
+  object-fit: contain;
 }
+
 
 .imageContainer {
     display: flex;

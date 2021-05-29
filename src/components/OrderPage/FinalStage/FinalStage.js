@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { useSelector } from "react-redux";
 import normalizeImageLink from "../../../helpers/normalizeImageLink";
 import { getFromDate, getFullTank } from "../../../redux/details/selectors";
@@ -21,6 +22,8 @@ const FinalStage = () => {
   const { carId, dateFrom, isFullTank } = useSelector(getPlacedOrderWithMemo);
 
   const orderIsFetching = useSelector(getOrderIsFetching)
+
+  const [hasError, setHasError] = useState(false);
 
   const normalLink = carId
     ? normalizeImageLink(carId.thumbnail.path)
@@ -72,12 +75,11 @@ const FinalStage = () => {
       </div>
       {normalLink && (
         <div className={styles.imageContainer}>
-          <div
-            className={styles.carImage}
-            style={{
-              backgroundImage: `url(${normalLink})`,
-            }}
-          ></div>
+          <img onError={() => setHasError(true)}
+          className={styles.carImage}
+          src={hasError ? process.env.PUBLIC_URL + '/images/noPhoto.png' : normalLink}
+          alt={currentCarName}
+        ></img>
         </div>
       )}
     </div>
