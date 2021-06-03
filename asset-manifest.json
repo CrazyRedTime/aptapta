@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/aptapta/static/css/main.c43abba3.chunk.css",
-    "main.js": "/aptapta/static/js/main.77fdd07a.chunk.js",
-    "main.js.map": "/aptapta/static/js/main.77fdd07a.chunk.js.map",
+    "main.js": "/aptapta/static/js/main.7fb3fb60.chunk.js",
+    "main.js.map": "/aptapta/static/js/main.7fb3fb60.chunk.js.map",
     "runtime-main.js": "/aptapta/static/js/runtime-main.746dd845.js",
     "runtime-main.js.map": "/aptapta/static/js/runtime-main.746dd845.js.map",
     "static/css/2.d22f252f.chunk.css": "/aptapta/static/css/2.d22f252f.chunk.css",
@@ -19,6 +19,6 @@
     "static/css/2.d22f252f.chunk.css",
     "static/js/2.1c09d201.chunk.js",
     "static/css/main.c43abba3.chunk.css",
-    "static/js/main.77fdd07a.chunk.js"
+    "static/js/main.7fb3fb60.chunk.js"
   ]
 }
