@@ -13,7 +13,6 @@ const getCategoriesFromState = (state) => {
 
   return state.cars.cars.reduce((acc, car) => {
     if (car.categoryId && !acc.some((category) => category.id === car.categoryId.id)) {
-      console.log(car)
       acc.push({
         id: car.categoryId.id,
         name: car.categoryId.name
