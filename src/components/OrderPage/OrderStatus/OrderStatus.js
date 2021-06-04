@@ -109,7 +109,7 @@ const OrderStatus = ({ currentStage, setCurrentStage, setConfirmation }) => {
         price = (datesInterval / min) * currentRate.price;
       } else if (currentRate.rateTypeId.id === "5e26a082099b810b946c5d83") {
         price = Math.ceil(datesInterval / day) * currentRate.price;
-      } else if (currentRate.rateTypeId.id === "5f622f029d3a610b850fd820") {
+      } else if (currentRate.rateTypeId.id === "5f622f029d3a610b850fd820" || "60b9437e2aed9a0b9b7ed337") {
         price = Math.ceil(datesInterval / week) * currentRate.price;
       }
       dispatch(
