@@ -30,7 +30,7 @@ const getMarkerForMap = async (point) => {
 
 const getCarsFromApi = async () => {
   const response = await template.get(`db/car`);
-  return response.data.data;
+  return response.data.data.filter((car) => car.categoryId);
 }
 
 const getRatesFromApi = async () => {
